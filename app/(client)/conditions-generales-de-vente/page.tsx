@@ -9,7 +9,7 @@ const TermsAndConditionsPage = () => {
     </h1>
 
     <p className="mb-8 text-gray-700">
-      Bienvenue sur Biss'App. Nous sommes ravis de vous proposer nos boissons et snacks artisanaux. Avant de passer commande, merci de prendre connaissance de nos Conditions Générales de Vente afin de garantir une expérience agréable et transparente.
+      Bienvenue sur Biss&rsquo;App. Nous sommes ravis de vous proposer nos boissons et snacks artisanaux. Avant de passer commande, merci de prendre connaissance de nos Conditions Générales de Vente afin de garantir une expérience agréable et transparente.
     </p>
 
     <section className="mb-6">
