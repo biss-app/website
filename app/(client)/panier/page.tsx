@@ -83,11 +83,6 @@ const CartPage = () => {
       ? "OFFERTE"
       : <PriceFormatter amount={shippingCost} />;
 
-  const buttonLabel =
-    deliveryMode === "click&collect"
-      ? "Choisir mon créneau de retrait"
-      : "Choisir mon créneau de livraison";
-
   return (
     <div className="pb-10">
       {isSignedIn ? (
@@ -166,9 +161,7 @@ const CartPage = () => {
                       </div>
 
                       <div className="flex flex-col gap-2 pt-1">
-                        {/* <Button onClick={() => setIsCheckoutOpen(true)} className="text-sm font-medium">
-                          {buttonLabel}
-                        </Button> */}
+                        {/* Bouton Passer commande Desktop */}
                         <Button
                           onClick={() => setIsDialogOpen(true)}
                           className="text-sm font-medium"
@@ -306,9 +299,12 @@ const CartPage = () => {
                       <PriceFormatter amount={finalTotal} />
                     </div>
 
-                    <Button onClick={() => setIsCheckoutOpen(true)} className="w-full" size="lg">
-                      {buttonLabel}
-                    </Button>
+                    {/* Bouton Passer commande Mobile */}
+                    <Button
+                      onClick={() => setIsDialogOpen(true)}
+                      className="w-full text-sm font-medium"
+                    />
+
                     <Link href="/" className="block text-center text-sm text-primary">
                       Continuer mes achats
                     </Link>
@@ -323,6 +319,8 @@ const CartPage = () => {
                 onConfirm={(data) => handleCheckout({ ...data, mode: deliveryMode })}
                 mode={deliveryMode}
               />
+
+              {/* Dialog commande */}
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="sm:max-w-lg text-center">
                   <DialogHeader>
@@ -355,9 +353,9 @@ const CartPage = () => {
 
                       <ul className="text-left list-disc list-inside mt-2 space-y-1">
                         <li>Les produits souhaités et leur quantité</li>
-                        <li>Le mode de remise &#40;Click & Collect ou livraison à domicile&#41;</li>
-                        <li>La date et l&rsquo;heure de remise souhaitées</li>
-                        <li>Et, dans le cas d&rsquo;une livraison, votre adresse de livraison</li>
+                        <li>Le mode de remise (Click & Collect ou livraison à domicile)</li>
+                        <li>La date et l’heure de remise souhaitées</li>
+                        <li>Et, dans le cas d’une livraison, votre adresse de livraison</li>
                       </ul>
 
                       <p className="mt-3">
