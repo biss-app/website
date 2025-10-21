@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /panier
+Disallow: /mentions-legales
+Disallow: /politique-de-confidentialite
+Disallow: /conditions-generales-de-vente
+
+Sitemap: https://biss-app.fr/sitemap.xml

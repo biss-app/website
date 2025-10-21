@@ -40,8 +40,8 @@ const Footer = () => {
         {/* <FooterLink href={"/cookies"}>Politique de gestion des cookies</FooterLink> */}
         <FooterLink href={"/conditions-generales-de-vente"}>Conditions Générales de Vente</FooterLink>
       </div>
-      <Image src={payment} alt="payment" className="w-64
-      object-cover"/>
+      {/*<Image src={payment} alt="payment" className="w-64
+      object-cover"/>*/}
       </Container>
     </footer>
   )

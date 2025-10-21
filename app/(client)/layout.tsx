@@ -10,6 +10,7 @@ import DisableDraftMode from "@/components/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
 import { SanityLive } from "@/sanity/lib/live";
 import { draftMode } from "next/headers";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -18,9 +19,76 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Biss'App",
-  description: "Vente de boissons non alcoolisées et de snacks",
+  metadataBase: new URL("https://biss-app.fr"),
+  title: {
+    default: "Biss'App – Boissons & Snacks à Clermont-Ferrand",
+    template: "%s | Biss'App",
+  },
+  description:
+    "Biss'App propose du bissap, du jus de gingembre, des chips de banane plantain, des mikatés et plus encore à Clermont-Ferrand et alentours.",
+  keywords: [
+    "bissap",
+    "jus de gingembre",
+    "chips de banane plantain",
+    "mikatés",
+    "snacks africains",
+    "Clermont-Ferrand",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://biss-app.fr",
+    siteName: "Biss'App",
+    title: "Biss'App – Boissons et Snacks à Clermont-Ferrand",
+    description:
+      "Boissons et snacks africains artisanaux à Clermont-Ferrand.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Biss'App – Boissons et snacks africains",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Biss'App",
+    description:
+      "Vente de boissons et snacks africains à Clermont-Ferrand.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://biss-app.fr",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
+
+<Script
+  id="schema-localbusiness"
+  type="application/ld+json"
+  strategy="afterInteractive"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FoodEstablishment",
+      name: "Biss'App",
+      image: "https://biss-app.fr/og-image.jpg",
+      url: "https://biss-app.fr",
+      address: {
+        "@type": "City",
+        addressLocality: "Clermont-Ferrand",
+        postalCode: ["63000", "63100"],
+        addressCountry: "FR",
+      },
+      servesCuisine: "Cuisine africaine artisanale",
+      priceRange: "€",
+    }),
+  }}
+/>
 
 export default async function RootLayout({
   children,
