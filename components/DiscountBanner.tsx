@@ -8,6 +8,7 @@ import { Badge } from './ui/badge';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { Button } from './ui/button';
+import { PortableText } from '@portabletext/react';
 const DiscountBanner = ({sales, onScrollClick}:{sales:SALE_QUERYResult; onScrollClick: () => void; }) => {
   return (
   <Carousel className="w-full max-w-screen-xl mx-auto my-10">
@@ -29,9 +30,52 @@ const DiscountBanner = ({sales, onScrollClick}:{sales:SALE_QUERYResult; onScroll
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-2 md:mb-4">
                     {sale?.title}
                   </h2>
-                  <p className="text-muted-foreground mb-2 md:mb-4 whitespace-pre-line">
-                    {sale?.description}
-                  </p>
+                  <div className="text-muted-foreground mb-2 md:mb-4 whitespace-pre-line">
+                    <PortableText
+                      value={sale.description || []}
+                      components={{
+                        block: {
+                          normal: ({ children }: any) => <div className="mb-4">{children}</div>, // ✅ div au lieu de p
+                          h1: ({ children }: any) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+                          h2: ({ children }: any) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
+                          h3: ({ children }: any) => <h3 className="text-xl font-medium mb-2">{children}</h3>,
+                          h4: ({ children }: any) => <h4 className="text-lg font-medium mb-2">{children}</h4>,
+                          h5: ({ children }: any) => <h5 className="text-base font-medium mb-1">{children}</h5>,
+                          h6: ({ children }: any) => <h6 className="text-sm font-medium mb-1">{children}</h6>,
+                          blockquote: ({ children }: any) => (
+                            <blockquote className="pl-4 border-l-4 italic mb-4">{children}</blockquote>
+                          ),
+                        },
+                        marks: {
+                          strong: ({ children }: any) => <strong>{children}</strong>,
+                          em: ({ children }: any) => <em>{children}</em>,
+                          code: ({ children }: any) => (
+                            <code className="bg-gray-100 px-1 py-[2px] rounded">{children}</code>
+                          ),
+                          underline: ({ children }: any) => <u>{children}</u>,
+                          strike: ({ children }: any) => <s>{children}</s>,
+                          link: ({ children, value }: any) => (
+                            <a
+                              href={value.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 underline"
+                            >
+                              {children}
+                            </a>
+                          ),
+                        },
+                        list: {
+                          bullet: ({ children }: any) => <ul className="mb-4 pl-6 list-disc">{children}</ul>,
+                          number: ({ children }: any) => <ol className="mb-4 pl-6 list-decimal">{children}</ol>,
+                        },
+                        listItem: {
+                          bullet: ({ children }: any) => <li className="mb-1">{children}</li>,
+                          number: ({ children }: any) => <li className="mb-1">{children}</li>,
+                        },
+                      }}
+                    />
+                  </div>
                   <p className="mb-2">
                     Ajoutez vos coups de c&oelig;ur au panier, et la réduction sera automatiquement appliquée !
                   </p>

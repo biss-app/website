@@ -1,21 +1,27 @@
 import { TagIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
+import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list';
 
-export const salesType = defineType ({
-  name:"sale",
+export const salesType = defineType({
+  name: "sale",
   title: "Annonces",
   type: "document",
-  icon:TagIcon,
+  icon: TagIcon,
   fields: [
+    // --- Champ nécessaire pour l'ordre triable ---
+    orderRankField({ type: 'sale', newItemPosition: 'after' }),
+
     defineField({
       name: "title",
       title: "Sale title",
       type: "string",
     }),
     defineField({
-      name: "description",
-      title: "Sale description",
-      type: "text",
+      name: 'description',
+      title: 'Sale description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: "badge",
@@ -55,25 +61,24 @@ export const salesType = defineType ({
       name: "image",
       title: "Product image",
       type: "image",
-      options: {
-        hotspot: true,
-      },
-      validation:(Rule)=>Rule.required()
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
     }),
   ],
-  preview:{
-    select:{
+  orderings: [orderRankOrdering], // Permet d'utiliser l'ordre dans d'autres listes
+  preview: {
+    select: {
       title: "title",
       discountAmount: "discountAmount",
       couponCode: "couponCode",
       isActive: "isActive"
     },
-    prepare(select){
-      const {title,discountAmount,couponCode,isActive}=select
-      const status= isActive ? "Active" : "Inactive"
-      return{
+    prepare(select) {
+      const { title, discountAmount, couponCode, isActive } = select;
+      const status = isActive ? "Active" : "Inactive";
+      return {
         title,
-        subtitle:`${discountAmount}% off - code: ${couponCode} - ${status}`,
+        subtitle: `${discountAmount}% off - code: ${couponCode} - ${status}`,
       };
     },
   },

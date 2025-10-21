@@ -17,7 +17,7 @@ interface CheckoutDialogProps {
   mode: "click&collect" | "livraison"; // Mode déjà choisi avant l'ouverture
 }
 
-const cities = ["Aubière", "Ceyrat", "Chamalières", "Cournon-d'Auvergne", "Clermont-Ferrand", "Gerzat", "Lempdes", "Royat"];
+const cities = ["Aubière", "Beaumont", "Blanzat", "Cébazat", "Ceyrat", "Chamalières", "Clermont-Ferrand", "Cournon-d'Auvergne", "Gerzat", "Lempdes", "Romagnat", "Royat"];
 
 const monthNames = [
   "janvier", "février", "mars", "avril", "mai", "juin",

@@ -62,6 +62,7 @@ export type Product = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   name?: string;
   slug?: Slug;
   image?: {
@@ -120,8 +121,26 @@ export type Sale = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   title?: string;
-  description?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   badge?: string;
   discountAmount?: number;
   couponCode?: string;
@@ -275,15 +294,33 @@ export type AllSanitySchemaTypes = ProductSnapshot | Order | Product | Sale | Ca
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/helpers/queries.ts
 // Variable: SALE_QUERY
-// Query: *[  _type == "sale"] | order(name asc)
+// Query: *[_type == "sale"] | order(orderRank asc)
 export type SALE_QUERYResult = Array<{
   _id: string;
   _type: "sale";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   title?: string;
-  description?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   badge?: string;
   discountAmount?: number;
   couponCode?: string;
@@ -304,13 +341,14 @@ export type SALE_QUERYResult = Array<{
   };
 }>;
 // Variable: PRODUCTS_QUERY
-// Query: *[_type == "product"] | order(name asc)
+// Query: *[_type == "product"] | order(orderRank asc)
 export type PRODUCTS_QUERYResult = Array<{
   _id: string;
   _type: "product";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   name?: string;
   slug?: Slug;
   image?: {
@@ -363,7 +401,7 @@ export type PRODUCTS_QUERYResult = Array<{
   }>;
 }>;
 // Variable: CATEGORIES_QUERY
-// Query: *[_type == "category"] | order(name asc)
+// Query: *[_type == "category"] | order(orderRank asc)
 export type CATEGORIES_QUERYResult = Array<{
   _id: string;
   _type: "category";
@@ -375,13 +413,14 @@ export type CATEGORIES_QUERYResult = Array<{
   description?: string;
 }>;
 // Variable: PRODUCT_BY_SLUG
-// Query: *[_type == "product" && slug.current == $slug] | order(name asc)[0]
+// Query: *[_type == "product" && slug.current == $slug] | order(orderRank asc)[0]
 export type PRODUCT_BY_SLUGResult = {
   _id: string;
   _type: "product";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   name?: string;
   slug?: Slug;
   image?: {
@@ -434,13 +473,14 @@ export type PRODUCT_BY_SLUGResult = {
   }>;
 } | null;
 // Variable: PRODUCT_SEARCH_QUERY
-// Query: *[_type == "product" && name match $searchParam] | order(name asc)
+// Query: *[_type == "product" && name match $searchParam] | order(orderRank asc)
 export type PRODUCT_SEARCH_QUERYResult = Array<{
   _id: string;
   _type: "product";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   name?: string;
   slug?: Slug;
   image?: {
@@ -492,14 +532,15 @@ export type PRODUCT_SEARCH_QUERYResult = Array<{
     _key: string;
   }>;
 }>;
-// Variable: PRODUCT_BY__CATEGORY_QUERY
-// Query: *[_type == "product" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(name asc)
-export type PRODUCT_BY__CATEGORY_QUERYResult = Array<{
+// Variable: PRODUCT_BY_CATEGORY_QUERY
+// Query: *[_type == "product" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(orderRank asc)
+export type PRODUCT_BY_CATEGORY_QUERYResult = Array<{
   _id: string;
   _type: "product";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   name?: string;
   slug?: Slug;
   image?: {
@@ -552,7 +593,7 @@ export type PRODUCT_BY__CATEGORY_QUERYResult = Array<{
   }>;
 }>;
 // Variable: MY_ORDERS_QUERY
-// Query: *[_type =='order' && clerkUserId == $userId] | order(orderData desc){  ..., products[]{  ..., product->  }}
+// Query: *[_type == 'order' && clerkUserId == $userId] | order(orderData desc) {    ...,    products[]{      ...,      product->    }  }
 export type MY_ORDERS_QUERYResult = Array<{
   _id: string;
   _type: "order";
@@ -598,12 +639,12 @@ export type MY_ORDERS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[\n  _type == \"sale\"] | order(name asc)": SALE_QUERYResult;
-    "*[_type == \"product\"] | order(name asc)": PRODUCTS_QUERYResult;
-    "*[_type == \"category\"] | order(name asc)": CATEGORIES_QUERYResult;
-    "*[_type == \"product\" && slug.current == $slug] | order(name asc)[0]": PRODUCT_BY_SLUGResult;
-    "*[_type == \"product\" && name match $searchParam] | order(name asc)": PRODUCT_SEARCH_QUERYResult;
-    "*[_type == \"product\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(name asc)": PRODUCT_BY__CATEGORY_QUERYResult;
-    "*[_type =='order' && clerkUserId == $userId] | order(orderData desc){\n  ..., products[]{\n  ..., product->\n  }\n}": MY_ORDERS_QUERYResult;
+    "*[_type == \"sale\"] | order(orderRank asc)": SALE_QUERYResult;
+    "*[_type == \"product\"] | order(orderRank asc)": PRODUCTS_QUERYResult;
+    "*[_type == \"category\"] | order(orderRank asc)": CATEGORIES_QUERYResult;
+    "*[_type == \"product\" && slug.current == $slug] | order(orderRank asc)[0]": PRODUCT_BY_SLUGResult;
+    "*[_type == \"product\" && name match $searchParam] | order(orderRank asc)": PRODUCT_SEARCH_QUERYResult;
+    "*[_type == \"product\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(orderRank asc)": PRODUCT_BY_CATEGORY_QUERYResult;
+    "\n  *[_type == 'order' && clerkUserId == $userId] | order(orderData desc) {\n    ...,\n    products[]{\n      ...,\n      product->\n    }\n  }\n": MY_ORDERS_QUERYResult;
   }
 }
