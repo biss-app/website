@@ -202,7 +202,7 @@ const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ isOpen, onClose, onConf
           {/* Phrase Click&Collect */}
           {mode === "click&collect" && (
             <p className="text-sm text-gray-600 mt-2">
-              Le retrait se réalise à l'arrêt de tramway <span className="text-gold">Stade M. Michelin</span>.
+              Le retrait se réalise à l&rsquo;arrêt de tramway <span className="text-gold">Stade M. Michelin</span>.
             </p>
           )}
 
@@ -226,7 +226,7 @@ const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ isOpen, onClose, onConf
           )}
           <div className="flex items-center space-x-2">
             <Checkbox checked={agreed} onCheckedChange={(val) => setAgreed(!!val)} />
-            <Label>J'accepte les <a href="/conditions-generales-de-vente" className="text-gold underline">Conditions Générales de Vente</a></Label>
+            <Label>J&rsquo;accepte les <a href="/conditions-generales-de-vente" className="text-gold underline">Conditions Générales de Vente</a></Label>
           </div>
           <Button className="w-full mt-2" onClick={handleConfirm} disabled={loading}>
             {loading ? "Chargement en cours..." : "Procéder au paiement"}

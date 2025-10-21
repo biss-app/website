@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -10,16 +10,6 @@ import DisableDraftMode from "@/components/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
 import { SanityLive } from "@/sanity/lib/live";
 import { draftMode } from "next/headers";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const poppins = Poppins({
   variable: "--font-poppins",

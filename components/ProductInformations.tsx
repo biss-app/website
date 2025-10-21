@@ -6,8 +6,21 @@ import { FaRegQuestionCircle } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
 import ShareButton from "@/components/ShareButton";
 import userCartStore from "@/store";
+import type { Product } from "@/types";
 
-export default function ProductInformations({ product }: { product: any }) {
+// Type exact des ingrédients selon ton schéma Sanity
+interface Ingredient {
+  _key: string;
+  _type: "ingredient";
+  name?: string;
+  allergen?: string;
+}
+
+interface Props {
+  product: Product;
+}
+
+export default function ProductInformations({ product }: Props) {
   const [openSection, setOpenSection] = useState<string | null>(null);
   const { getTotalPrice } = userCartStore();
 
@@ -49,34 +62,27 @@ export default function ProductInformations({ product }: { product: any }) {
           <p>Livraison</p>
         </button>
 
-        {/* Partager : pas de toggle */}
         <ShareButton />
       </div>
 
-      {/* Barre horizontale sous les boutons */}
+      {/* Barre horizontale */}
       <div className="border-b border-b-gray-200 pb-2" />
 
-      {/* Contenu qui s'affiche sous la barre */}
+      {/* Contenu dynamique */}
       {openSection && (
         <div className="mt-2">
           {openSection === "ingredients" && (
             <div className="flex flex-col gap-1 text-sm text-gray-600">
-              {product.ingredients?.map(
-                (ing: { name: string; allergen?: string }, index: number) => (
-                  <p key={index}>
-                    {ing.name}
-                    {ing.allergen && (
-                      <span
-                        className="font-semibold"
-                        aria-label={`Allergène : ${ing.allergen}`}
-                      >
-                        {" "}
-                        ({ing.allergen})
-                      </span>
-                    )}
-                  </p>
-                )
-              )}
+              {product.ingredients?.map((ing: Ingredient) => (
+                <p key={ing._key}>
+                  {ing.name}
+                  {ing.allergen && (
+                    <span className="font-semibold" aria-label={`Allergène : ${ing.allergen}`}>
+                      {" "}({ing.allergen})
+                    </span>
+                  )}
+                </p>
+              ))}
             </div>
           )}
 
@@ -85,8 +91,7 @@ export default function ProductInformations({ product }: { product: any }) {
               Pour toute question, veuillez nous adresser un mail à l&apos;adresse{" "}
               <a href="mailto:contact@biss-app.fr" className="text-gold underline">
                 contact@biss-app.fr
-              </a>
-              .
+              </a>.
             </div>
           )}
 
@@ -100,14 +105,13 @@ export default function ProductInformations({ product }: { product: any }) {
               Pour plus d&apos;informations, veuillez consulter nos{" "}
               <a href="/cgv" className="text-gold underline hover:text-gold-700">
                 Conditions Générales de Vente
-              </a>
-              .
+              </a>.
             </div>
           )}
         </div>
       )}
 
-      {/* Bloc livraison offerte toujours en bas */}
+      {/* Bloc livraison offerte */}
       <div className="flex justify-center mt-4">
         {getTotalPrice() < 25 ? (
           <p className="bg-red-100 w-56 text-center text-red-600 text-sm py-2.5 font-semibold rounded-lg">

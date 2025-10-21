@@ -50,7 +50,7 @@ const CategorySelector = ({categories}: Props) => {
         />
         <CommandList>
           <CommandEmpty>
-            Aucune catégorie n'a été trouvée.
+            Aucune catégorie n&rsquo;a été trouvée.
           </CommandEmpty>
           <CommandGroup>
             {categories?.map((category)=>(

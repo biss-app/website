@@ -20,7 +20,7 @@ const EmptyCart = () => {
           Votre panier est vide !
         </h2>
         <p className="text-gray-600 max-w-md mx-auto text-center">
-          Il semblerait que vous n&rsquo;ayez pas encore ajouté d'articles à votre panier.
+          Il semblerait que vous n&rsquo;ayez pas encore ajouté d&rsquo;articles à votre panier.
           <br/>
           Explorez notre boutique pour trouver votre coup de c&oelig;ur !
         </p>

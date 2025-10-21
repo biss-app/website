@@ -17,7 +17,7 @@ const ProductList = ({products, title, categories}: Props) => {
           <h2 className="text-2xl font-semibold text-gray-600">
             <span className="text-gold">Explorez{" "}</span>notre boutique
           </h2>
-          <p className="text-sm text-gray-500">Votre coup de c&oelig;ur n'attend que vous !</p>
+          <p className="text-sm text-gray-500">Votre coup de c&oelig;ur n&rsquo;attend que vous !</p>
         </div>
       )}
       <ProductGrid products={products} />

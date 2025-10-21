@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -81,6 +85,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --font-geist-sans: 'Geist Sans', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 .dark {

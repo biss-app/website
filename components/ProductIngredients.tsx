@@ -7,8 +7,22 @@ import { TbTruckDelivery } from 'react-icons/tb';
 import PriceView from '@/components/PriceView';
 import AddToCartButton from '@/components/AddToCartButton';
 import ShareButton from '@/components/ShareButton';
+import type { Product } from "@/types";
+import { PortableText } from "@portabletext/react";
 
-export default function ProductDetails({ product }: { product: any }) {
+// Type exact des ingrédients selon ton schéma Sanity
+interface Ingredient {
+  _key: string;
+  _type: "ingredient";
+  name?: string;
+  allergen?: string;
+}
+
+interface Props {
+  product: Product;
+}
+
+export default function ProductDetails({ product }: Props) {
   const [showIngredients, setShowIngredients] = useState(false);
 
   return (
@@ -30,9 +44,12 @@ export default function ProductDetails({ product }: { product: any }) {
         </p>
       )}
 
-      <p className="text-sm text-gray-600 tracking-wide">
-        {product.description}
-      </p>
+      {/* Rendu description Sanity avec PortableText */}
+      {product.description && (
+        <div className="text-sm text-gray-600 tracking-wide">
+          <PortableText value={product.description} />
+        </div>
+      )}
 
       <AddToCartButton product={product} />
 
@@ -57,27 +74,22 @@ export default function ProductDetails({ product }: { product: any }) {
       </div>
 
       {/* Liste des ingrédients */}
-      {showIngredients && product.ingredients?.length > 0 && (
+      {showIngredients && product.ingredients && product.ingredients.length > 0 && (
         <div className="mt-3 flex flex-col gap-1">
-          {product.ingredients.map(
-            (ing: { name: string; allergen?: string }, index: number) => (
-              <p key={index} className="text-sm text-gray-600">
-                {ing.name}
-                {ing.allergen && (
-                  <span className="italic"> ({ing.allergen})</span>
-                )}
-              </p>
-            )
-          )}
+          {product.ingredients.map((ing: Ingredient) => (
+            <p key={ing._key} className="text-sm text-gray-600">
+              {ing.name}
+              {ing.allergen && <span className="italic"> ({ing.allergen})</span>}
+            </p>
+          ))}
         </div>
       )}
+
 
       {/* Bloc livraison offerte */}
       <div className="flex flex-wrap items-center justify-center gap-5">
         <div className="border border-gold/20 text-center p-3 hover:border-gold hoverEffect rounded-md">
-          <p className="text-base font-semibold text-black">
-            LIVRAISON OFFERTE
-          </p>
+          <p className="text-base font-semibold text-black">LIVRAISON OFFERTE</p>
           <p className="text-sm text-gray-500">
             Livraison offerte dès 25€ d&apos;achats !
           </p>

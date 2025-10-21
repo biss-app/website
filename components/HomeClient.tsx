@@ -4,11 +4,12 @@ import { useRef } from "react";
 import DiscountBanner from "./DiscountBanner";
 import ProductList from "./ProductList";
 import Container from "./Container";
+import type { Sale, Product, Category } from "@/types"; // types alignés avec Sanity
 
 interface Props {
-  sales: any;
-  products: any;
-  categories: any;
+  sales: Sale[];
+  products: Product[];
+  categories: Category[];
 }
 
 export default function HomeClient({ sales, products, categories }: Props) {

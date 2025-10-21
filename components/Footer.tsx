@@ -32,7 +32,7 @@ const Footer = () => {
       <Container className="py-5 flex items-center
       justify-between">
       <p className="text-gray-500">
-        Copyright © 2025 <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer" className="text-gold font-semibold">Biss'App</a> tous droits réservés.
+        Copyright © 2025 <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer" className="text-gold font-semibold">Biss&rsquo;App</a> tous droits réservés.
       </p>
       <div className="flex flex-wrap gap-3 text-gray-400">
         <FooterLink href={"/mentions-legales"}>Mentions légales</FooterLink>
