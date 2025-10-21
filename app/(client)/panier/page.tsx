@@ -302,8 +302,10 @@ const CartPage = () => {
                     {/* Bouton Passer commande Mobile */}
                     <Button
                       onClick={() => setIsDialogOpen(true)}
-                      className="w-full text-sm font-medium"
-                    />
+                      className="text-sm font-medium"
+                    >
+                      Passer commande
+                    </Button>
 
                     <Link href="/" className="block text-center text-sm text-primary">
                       Continuer mes achats
