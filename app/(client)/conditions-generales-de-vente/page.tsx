@@ -35,7 +35,7 @@ const TermsAndConditionsPage = () => {
         3. COMMANDES ET PAIEMENT
       </h2>
       <p className="text-gray-700">
-        Toutes les commandes sont payables uniquement via Stripe. Une commande n'est validée qu'après confirmation du paiement. Veuillez vous assurer que toutes les informations de commande &#40;produits, mode de livraison, adresse de livraison&#41; sont correctes avant de finaliser la commande.
+        Toutes les commandes sont payables uniquement via Stripe. Une commande n&rsquo;est validée qu&rsquo;après confirmation du paiement. Veuillez vous assurer que toutes les informations de commande &#40;produits, mode de livraison, adresse de livraison&#41; sont correctes avant de finaliser la commande.
       </p>
     </section>
 

@@ -1,7 +1,5 @@
 import { Metadata } from "next";
-import React, { ReactNode } from "react";
-import Header from "@/components/Header/HeaderAll";
-import Footer from "@/components/Footer";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Biss'App",

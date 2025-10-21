@@ -3,7 +3,6 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
 {/*import ProductCartBar from "./ProductCartBar";*/}
-import { LuStar } from "react-icons/lu";
 import PriceView from "./PriceView";
 import AddToCartButton from "./AddToCartButton";
 interface Props{
@@ -11,7 +10,7 @@ interface Props{
 }
 
 const ProductCard = ({product}: Props) => {
-  const isStock= product?.stock !== 0;
+  {/*const isStock= product?.stock !== 0;*/}
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden group text-sm">
       <div className="border-b border-gray-300 overflow-hidden relative">

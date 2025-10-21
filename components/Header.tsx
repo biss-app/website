@@ -5,12 +5,10 @@ import Container from './Container';
 import Form from 'next/form';
 import Link from 'next/link';
 import CartIcon from './CartIcon';
-import { ShoppingBasket } from 'lucide-react';
 import { currentUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignedIn, UserButton } from "@clerk/nextjs";
 import { SignInButton } from "@clerk/nextjs";
 import { User } from 'lucide-react';
-import { Sign } from 'crypto';
 import { getMyOrders } from '@/sanity/helpers';
 const Header = async() => {
   const user = await currentUser();

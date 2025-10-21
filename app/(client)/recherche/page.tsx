@@ -1,5 +1,4 @@
 import ProductGrid from '@/components/ProductGrid';
-import ProductList from '@/components/ProductList';
 import { searchProductsByName } from '@/sanity/helpers';
 import Container from '@/components/Container';
 import React from 'react'
@@ -19,7 +18,7 @@ const SearchPage = async ({searchParams}: Props) => {
       <div className="flex justify-center min-h-screen bg-gray-100 p-4">
         <div className="bg-white p-8 h-40 rounded-lg shadow-md w-full md:max-w-4xl text-center">
           <h1 className="text-3xl font-bold mb-3">
-            Aucun produit n'est nommé{" "}<span className="text-gold">{query}</span>
+            Aucun produit n&rsquo;est nommé{" "}<span className="text-gold">{query}</span>
           </h1>
           <p className="text-gray-600">Essayez de chercher avec un autre mot-clé</p>
         </div>

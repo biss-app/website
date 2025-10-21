@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { Poppins, Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
-import { ClerkDegraded } from "@clerk/nextjs";
 import { ClerkProvider } from "@clerk/nextjs";
 import { frFR } from "@clerk/localizations"
 import Footer from "@/components/Footer";
-import toast, { Toaster, ToastOptions } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import DisableDraftMode from "@/components/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
 import { SanityLive } from "@/sanity/lib/live";
@@ -39,7 +38,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider dynamic>
+    <ClerkProvider dynamic localization={frFR}>
       <html lang="fr">
         <body className={`${poppins.variable} antialiased min-h-screen flex flex-col`}>
           {(await draftMode()).isEnabled && (

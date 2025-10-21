@@ -2,7 +2,7 @@
 import { Product } from "@/sanity.types";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import QuantityButtons from "./QuantityButtons";
 import PriceFormatter from "./PriceFormatter";
 import { useEffect, useState } from "react";

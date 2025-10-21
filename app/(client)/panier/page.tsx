@@ -356,8 +356,8 @@ const CartPage = () => {
                       <ul className="text-left list-disc list-inside mt-2 space-y-1">
                         <li>Les produits souhaités et leur quantité</li>
                         <li>Le mode de remise &#40;Click & Collect ou livraison à domicile&#41;</li>
-                        <li>La date et l'heure de remise souhaitées</li>
-                        <li>Et, dans le cas d'une livraison, votre adresse de livraison</li>
+                        <li>La date et l&rsquo;heure de remise souhaitées</li>
+                        <li>Et, dans le cas d&rsquo;une livraison, votre adresse de livraison</li>
                       </ul>
 
                       <p className="mt-3">

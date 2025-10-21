@@ -8,10 +8,9 @@ import userCartStore from "@/store";
 interface Props {
   product: Product;
   className?: string;
-  borderStyle?: string;
 }
 
-const QuantityButtons = ({product, className, borderStyle}: Props) => {
+const QuantityButtons = ({product, className}: Props) => {
   const {addItem, removeItem, getItemCount} = userCartStore()
   const handleRemoveProduct = () => {
     removeItem(product?._id);
@@ -26,7 +25,6 @@ const QuantityButtons = ({product, className, borderStyle}: Props) => {
     toast.success("Vous en voulez encore ?! Vous allez vous régaler ! 😋");
   };
   const itemCount = getItemCount(product?._id);
-  const isOutOfStock = product?.stock === 0;
   return (
     <div className={cn("flex items-center gap-1 pb-1 text-base", className)}>
       <Button

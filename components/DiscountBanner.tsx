@@ -8,7 +8,6 @@ import { Badge } from './ui/badge';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { Button } from './ui/button';
-import { cn } from '@/lib/utils';
 const DiscountBanner = ({sales, onScrollClick}:{sales:SALE_QUERYResult; onScrollClick: () => void; }) => {
   return (
   <Carousel className="w-full max-w-screen-xl mx-auto my-10">

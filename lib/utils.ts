@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { PortableTextBlock, PortableTextSpan } from '@sanity/types'
+import { PortableTextSpan } from '@sanity/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

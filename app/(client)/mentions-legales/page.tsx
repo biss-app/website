@@ -16,13 +16,13 @@ const LegalNoticePage = () => {
             Conformément aux dispositions des <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049577522#III:~:text=III.%2DA.%2DLes,la%20cr%C3%A9ation%20artistique." target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">articles 6-III</a> et <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000032236011" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">19</a> de la <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000801164" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&rsquo;économie numérique</a>, il est précisé aux utilisateurs du présent site l&rsquo;identité des différents intervenants dans le cadre de sa réalisation et de son suivi :
           </p>
           <ul className="list-disc list-inside mt-3 space-y-1">
-            <li>Raison sociale : <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss'App</a></li>
+            <li>Raison sociale : <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a></li>
             <li>Forme juridique : <a href="https://entreprendre.service-public.fr/vosdroits/F37411#:~:text=La%20SARL%20est%20une%20soci%C3%A9t%C3%A9,personnes%20morales%20ou%20personnes%20physiques." target="_blank" rel="noopener noreferrer">SARL</a></li>
             <li>Capital social : 100€</li>
             <li>Adresse du siège social : 14 bis rue Vaucanson, 63100 Clermont-Ferrand</li>
-            <li>Numéro d'immatriculation au RCS : <a href="https://www.infogreffe.fr/entreprise/biss-app/945074524/" target="_blank" rel="noopener noreferrer">945 074 524 R.C.S. Clermont-Ferrand</a></li>
+            <li>Numéro d&rsquo;immatriculation au RCS : <a href="https://www.infogreffe.fr/entreprise/biss-app/945074524/" target="_blank" rel="noopener noreferrer">945 074 524 R.C.S. Clermont-Ferrand</a></li>
             <li>Adresse e-mail : <a href="mailto:contact@biss-app.fr" className="text-gold underline hover:text-gold-700">contact@biss-app.fr</a></li>
-            <li>Directeurs de la publication : <a href="https://www.linkedin.com/in/jkkokolo" target="_blank" rel="noopener noreferrer">Jackie KOKOLO</a> et <a href="https://www.linkedin.com/in/maxime-gougat" target="_blank" rel="noopener noreferrer">Maxime GOUGAT</a>, Gérants de <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss'App</a></li>
+            <li>Directeurs de la publication : <a href="https://www.linkedin.com/in/jkkokolo" target="_blank" rel="noopener noreferrer">Jackie KOKOLO</a> et <a href="https://www.linkedin.com/in/maxime-gougat" target="_blank" rel="noopener noreferrer">Maxime GOUGAT</a>, Gérants de <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a></li>
           </ul>
         </section>
 
@@ -45,7 +45,7 @@ const LegalNoticePage = () => {
             3. ACTIVITÉ
           </h2>
           <p>
-            Biss'App commercialise des boissons non alcoolisées et des snacks via ce site web.
+            Biss&rsquo;App commercialise des boissons non alcoolisées et des snacks via ce site web.
           </p>
           <p className="mt-2">
             Pour plus d&rsquo;informations sur les conditions de commande ou de livraison, merci de consulter nos <a href="/conditions-generales-de-vente" className="text-gold underline hover:text-gold-700">Conditions Générales de Vente</a>.
@@ -57,7 +57,7 @@ const LegalNoticePage = () => {
             4. PROPRIÉTÉ INTELLECTUELLE
           </h2>
           <p>
-            L&rsquo;ensemble des éléments présents sur ce site &#40;textes, images, graphismes, logos, vidéos, icônes, sons, logiciels, structure du site, ...&#41; est protégé par le <a href="https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069414/" target="_blank" rel="noopener noreferrer">droit de la propriété intellectuelle</a> et est la propriété exclusive de <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss'App</a>, sauf mention contraire.
+            L&rsquo;ensemble des éléments présents sur ce site &#40;textes, images, graphismes, logos, vidéos, icônes, sons, logiciels, structure du site, ...&#41; est protégé par le <a href="https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069414/" target="_blank" rel="noopener noreferrer">droit de la propriété intellectuelle</a> et est la propriété exclusive de <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a>, sauf mention contraire.
           </p>
           <p className="mt-2">
             Toute reproduction, représentation, adaptation, publication ou exploitation, totale ou partielle, sans autorisation écrite préalable, est strictement interdite.
@@ -72,7 +72,7 @@ const LegalNoticePage = () => {
             Les données personnelles collectées sur le site sont traitées conformément au Règlement Général sur la Protection des Données &#40;<a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">RGPD - UE 2016/679</a>&#41; et à la <a href="https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">loi Informatique et Libertés modifiée</a>.
           </p>
           <p className="mt-2">
-            Pour en savoir plus sur les finalités de traitement, les durées de conservation, vos droits d'accès, de rectification, d'opposition, de suppression, de limitation ou de portabilité de vos données, veuillez consulter notre <a href="/politique-de-confidentialite" className="text-gold underline hover:text-gold-700">Politique de confidentialité</a>.
+            Pour en savoir plus sur les finalités de traitement, les durées de conservation, vos droits d&rsquo;accès, de rectification, d&rsquo;opposition, de suppression, de limitation ou de portabilité de vos données, veuillez consulter notre <a href="/politique-de-confidentialite" className="text-gold underline hover:text-gold-700">Politique de confidentialité</a>.
           </p>
           <p className="mt-2">
             Vous pouvez exercer vos droits à tout moment en nous contactant à :
@@ -100,7 +100,7 @@ const LegalNoticePage = () => {
             7. LIENS HYPERTEXTES
           </h2>
           <p>
-            Le site peut contenir des liens vers des sites tiers. <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss'App</a> décline toute responsabilité quant au contenu de ces sites et à l&rsquo;usage qui pourrait en être fait par les utilisateurs.
+            Le site peut contenir des liens vers des sites tiers. <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a> décline toute responsabilité quant au contenu de ces sites et à l&rsquo;usage qui pourrait en être fait par les utilisateurs.
           </p>
         </section>
 
@@ -109,10 +109,10 @@ const LegalNoticePage = () => {
             8. RESPONSABILITÉ
           </h2>
           <p>
-            <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss'App</a> s'efforce de fournir des informations exactes et mises à jour sur son site, mais ne saurait garantir l&rsquo;exactitude, la complétude ou l&rsquo;actualité des informations diffusées.
+            <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a> s&rsquo;efforce de fournir des informations exactes et mises à jour sur son site, mais ne saurait garantir l&rsquo;exactitude, la complétude ou l&rsquo;actualité des informations diffusées.
           </p>
           <p className="mt-2">
-            L&rsquo;utilisation du site se fait sous l&rsquo;entière responsabilité de l&rsquo;utilisateur. En aucun cas, <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss'App</a> ne pourra être tenue responsable de dommages directs ou indirects résultant de l&rsquo;accès ou de l&rsquo;utilisation du site.
+            L&rsquo;utilisation du site se fait sous l&rsquo;entière responsabilité de l&rsquo;utilisateur. En aucun cas, <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a> ne pourra être tenue responsable de dommages directs ou indirects résultant de l&rsquo;accès ou de l&rsquo;utilisation du site.
           </p>
         </section>
 

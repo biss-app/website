@@ -1,6 +1,5 @@
 import { Category, Product } from "@/sanity.types";
 import Categories from "./Categories";
-import ProductCard from "./ProductCard";
 import ProductGrid from "./ProductGrid";
 
 interface Props {
