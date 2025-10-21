@@ -2,8 +2,6 @@
 
 import React, { ReactNode } from 'react';
 import Container from './Container';
-import Image from 'next/image';
-import payment from '../images/payment.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
