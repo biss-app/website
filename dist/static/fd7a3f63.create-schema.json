@@ -1,0 +1,668 @@
+[
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "category",
+    "type": "document",
+    "title": "Catégories"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Sale title"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "title": "Sale description"
+      },
+      {
+        "description": "Discount badge ratio",
+        "name": "badge",
+        "type": "string",
+        "title": "Discount badge"
+      },
+      {
+        "description": "Amount off in percentage or fixed value",
+        "name": "discountAmount",
+        "type": "number",
+        "title": "Discount amount"
+      },
+      {
+        "name": "couponCode",
+        "type": "string",
+        "title": "Coupon code"
+      },
+      {
+        "name": "validFrom",
+        "type": "datetime",
+        "title": "Valid from"
+      },
+      {
+        "name": "validUntil",
+        "type": "datetime",
+        "title": "Valid until"
+      },
+      {
+        "initialValue": true,
+        "description": "Toggle to activate/deactivate the sale",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Is active"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Product image"
+      }
+    ],
+    "name": "sale",
+    "type": "document",
+    "title": "Annonces"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Nom du produit"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Image du produit"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "description",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "price",
+        "type": "number",
+        "title": "Prix"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "discount",
+        "type": "number",
+        "title": "Remise"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to catégories"
+          }
+        ],
+        "name": "categories",
+        "type": "array",
+        "title": "Catégories"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "stock",
+        "type": "number"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "label",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "New",
+              "value": "new"
+            },
+            {
+              "title": "Hot",
+              "value": "hot"
+            },
+            {
+              "title": "Sale",
+              "value": "sale"
+            }
+          ]
+        },
+        "name": "status",
+        "type": "string",
+        "title": "Statut du produit"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error",
+            "message": "Au moins un ingrédient est requis"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error",
+                    "message": "L’ingrédient est obligatoire"
+                  }
+                ],
+                "name": "name",
+                "type": "string",
+                "title": "Nom de l’ingrédient"
+              },
+              {
+                "name": "allergen",
+                "type": "string",
+                "title": "Allergène (facultatif)"
+              }
+            ],
+            "type": "object",
+            "name": "ingredient",
+            "title": "Ingrédient"
+          }
+        ],
+        "name": "ingredients",
+        "type": "array",
+        "title": "Ingrédients"
+      }
+    ],
+    "name": "product",
+    "type": "document",
+    "title": "Produits"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "orderNumber",
+        "type": "string",
+        "title": "Numéro de commande"
+      },
+      {
+        "name": "stripeCheckoutSessionId",
+        "type": "string",
+        "title": "ID de session Stripe"
+      },
+      {
+        "name": "stripePaymentIntentId",
+        "type": "string",
+        "title": "ID de paiement Stripe"
+      },
+      {
+        "name": "stripeCustomerId",
+        "type": "string",
+        "title": "Email client (Stripe)"
+      },
+      {
+        "name": "clerkUserId",
+        "type": "string",
+        "title": "ID utilisateur Clerk"
+      },
+      {
+        "name": "customerName",
+        "type": "string",
+        "title": "Nom du client"
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "title": "Email du client"
+      },
+      {
+        "of": [
+          {
+            "type": "productSnapshot"
+          }
+        ],
+        "name": "products",
+        "type": "array",
+        "title": "Produits achetés (snapshot)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "totalPrice",
+        "type": "number",
+        "title": "Prix total"
+      },
+      {
+        "initialValue": 0,
+        "name": "amountDiscount",
+        "type": "number",
+        "title": "Montant de la remise"
+      },
+      {
+        "name": "currency",
+        "type": "string",
+        "title": "Devise"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "En attente",
+              "value": "En attente"
+            },
+            {
+              "title": "Payée",
+              "value": "Payée"
+            },
+            {
+              "title": "En préparation",
+              "value": "En préparation"
+            },
+            {
+              "title": "En cours de livraison",
+              "value": "En cours de livraison"
+            },
+            {
+              "title": "Livrée",
+              "value": "Livrée"
+            }
+          ]
+        },
+        "name": "status",
+        "type": "string",
+        "title": "Statut"
+      },
+      {
+        "name": "orderDate",
+        "type": "datetime",
+        "title": "Date de commande"
+      }
+    ],
+    "name": "order",
+    "type": "document",
+    "title": "Commandes"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Titre"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "price",
+        "type": "number",
+        "title": "Prix"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "quantity",
+        "type": "number",
+        "title": "Quantité"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Image du produit"
+      }
+    ],
+    "name": "productSnapshot",
+    "type": "object"
+  }
+]
