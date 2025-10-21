@@ -1,4 +1,5 @@
 "use client";
+
 import { MY_ORDERS_QUERYResult } from "@/sanity.types";
 import React, { useState } from "react";
 import { TableBody, TableCell, TableRow } from "./ui/table";
@@ -27,6 +28,32 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
       })
     : [];
 
+  // Normalisation complète pour OrderDetailsDialog
+  const normalizedOrder = selectedOrder
+  ? {
+      ...selectedOrder,
+      orderNumber: selectedOrder.orderNumber || "N/A",
+      customerName: selectedOrder.customerName || "",
+      email: selectedOrder.email || "",
+      orderDate: selectedOrder.orderDate || "",
+      status: selectedOrder.status || "En attente",
+      totalPrice: selectedOrder.totalPrice || 0,
+      amountDiscount: selectedOrder.amountDiscount || 0,
+      currency: selectedOrder.currency || "€",
+      products: (selectedOrder.products || []).map((p) => ({
+        _key: p._key,
+        _type: "productSnapshot" as const,
+        name: p.title || "Produit inconnu",
+        price: p.price || 0,
+        quantity: p.quantity || 1,
+        image: p.image?.asset
+          ? { _type: "image" as const, asset: { _ref: p.image.asset._ref, _type: "reference" as const } }
+          : undefined,
+      })),
+    }
+  : null;
+
+
   return (
     <>
       <TableBody>
@@ -51,9 +78,7 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
                         new Date(order?.orderDate).toLocaleDateString()}
                     </TableCell>
                     <TableCell>{order.customerName}</TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      {order?.email}
-                    </TableCell>
+                    <TableCell className="hidden sm:table-cell">{order?.email}</TableCell>
                     <TableCell>
                       <PriceFormatter
                         amount={order?.totalPrice}
@@ -95,8 +120,8 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
       </TableBody>
 
       <OrderDetailsDialog
-        order={selectedOrder}
-        isOpen={!!selectedOrder}
+        order={normalizedOrder}
+        isOpen={!!normalizedOrder}
         onClose={() => setSelectedOrder(null)}
       />
     </>
