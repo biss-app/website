@@ -83,7 +83,7 @@ const LegalNoticePage = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
+        {/*<section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
             6. COOKIES ET TRACEURS
           </h2>
@@ -93,11 +93,11 @@ const LegalNoticePage = () => {
           <p className="mt-2">
             Le détail des cookies utilisés, leur durée de conservation, et les modalités d&rsquo;acceptation/de refus sont accessibles via notre <a href="/cookies" className="text-gold underline hover:text-gold-700">Politique de gestion des cookies</a>.
           </p>
-        </section>
+        </section>*/}
 
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
-            7. LIENS HYPERTEXTES
+            6. LIENS HYPERTEXTES
           </h2>
           <p>
             Le site peut contenir des liens vers des sites tiers. <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a> décline toute responsabilité quant au contenu de ces sites et à l&rsquo;usage qui pourrait en être fait par les utilisateurs.
@@ -106,7 +106,7 @@ const LegalNoticePage = () => {
 
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
-            8. RESPONSABILITÉ
+            7. RESPONSABILITÉ
           </h2>
           <p>
             <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a> s&rsquo;efforce de fournir des informations exactes et mises à jour sur son site, mais ne saurait garantir l&rsquo;exactitude, la complétude ou l&rsquo;actualité des informations diffusées.
@@ -118,7 +118,7 @@ const LegalNoticePage = () => {
 
         <section>
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
-            9. DROIT APPLICABLE
+            8. DROIT APPLICABLE
           </h2>
           <p>
             Les présentes mentions légales sont régies par le droit français.
@@ -128,7 +128,7 @@ const LegalNoticePage = () => {
           </p>
         </section>
         <p className="text-sm text-gray-500 text-center mt-8">
-          Dernière mise à jour : 10 octobre 2025
+          Dernière mise à jour : 21 octobre 2025
         </p>
 
       </article>

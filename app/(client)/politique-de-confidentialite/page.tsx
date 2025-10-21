@@ -28,7 +28,7 @@ const PrivacyPolicyPage = () => {
             2. RESPONSABLE DU TRAITEMENT
           </h2>
           <p>
-            Le responsable du traitement des données est <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a>, dont le siège social est situé au <strong>14 bis rue Vaucanson &#40;63100 Clermont-Ferrand&#41;</strong>.
+            Le responsable du traitement des données est <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a>, dont le siège social est situé au 14 bis rue Vaucanson &#40;63100 Clermont-Ferrand&#41;.
           </p>
           <p>
             Vous pouvez contacter le responsable de la protection des données à l&rsquo;adresse suivante :{" "} <a href="mailto:dpo@biss-app.fr" className="text-gold underline hover:text-gold-700">dpo@biss-app.fr</a>.
@@ -152,7 +152,7 @@ const PrivacyPolicyPage = () => {
           </p>
         </section>
         <p className="text-sm text-gray-500 text-center mt-8">
-          Dernière mise à jour : 10 octobre 2025
+          Dernière mise à jour : 21 octobre 2025
         </p>
 
       </article>

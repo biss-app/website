@@ -9,7 +9,7 @@ const TermsAndConditionsPage = () => {
     </h1>
 
     <p className="mb-8 text-gray-700">
-      Bienvenue sur [Nom du site]. Nous sommes ravis de vous proposer nos boissons et snacks artisanaux. Avant de passer commande, merci de prendre connaissance de nos Conditions Générales de Vente afin de garantir une expérience agréable et transparente.
+      Bienvenue sur Biss'App. Nous sommes ravis de vous proposer nos boissons et snacks artisanaux. Avant de passer commande, merci de prendre connaissance de nos Conditions Générales de Vente afin de garantir une expérience agréable et transparente.
     </p>
 
     <section className="mb-6">
@@ -35,7 +35,9 @@ const TermsAndConditionsPage = () => {
         3. COMMANDES ET PAIEMENT
       </h2>
       <p className="text-gray-700">
-        Toutes les commandes sont payables uniquement via Stripe. Une commande n&rsquo;est validée qu&rsquo;après confirmation du paiement. Veuillez vous assurer que toutes les informations de commande &#40;produits, mode de livraison, adresse de livraison&#41; sont correctes avant de finaliser la commande.
+        Toutes les commandes sont payables par défaut via Stripe. Une commande n&rsquo;est validée qu&rsquo;après confirmation du paiement. Veuillez vous assurer que toutes les informations de commande &#40;produits, mode de livraison, adresse de livraison&#41; sont correctes avant de finaliser la commande.
+        <br/>
+        Biss&rsquo;App se réserve cependant le droit d&rsquo;accepter, sur demande du client, d&rsquo;autres modes de paiement.
       </p>
     </section>
 
@@ -46,9 +48,11 @@ const TermsAndConditionsPage = () => {
       <p className="text-gray-700">
         Nous livrons uniquement dans les villes proposées lors du choix du créneau de livraison. Si vous indiquez une ville non couverte au moment du paiement, aucun remboursement ne pourra être effectué.
       </p>
+      <br/>
       <p className="text-gray-700">
         Pour les commandes passées avant midi, la livraison peut être effectuée dès le lendemain. Pour les commandes passées après midi, la livraison pourra être effectuée après-demain.
       </p>
+      <br/>
       <p className="text-gray-700">
         Le service Click & Collect ne comporte aucun frais de livraison.
       </p>
@@ -59,10 +63,10 @@ const TermsAndConditionsPage = () => {
         5. ANNULATION ET MODIFICATION
       </h2>
       <p className="text-gray-700">
-        Pour annuler une commande, veuillez nous contacter à <span className="font-semibold">[exemple@exemple.fr]</span> au moins 24 heures avant la livraison. Le montant remboursé correspondra au montant payé, déduction faite des frais Stripe.
+        Pour annuler une commande, veuillez nous contacter à <span className="font-semibold">contact@biss-app.fr</span> au moins 24 heures avant la livraison. Le montant remboursé correspondra au montant payé, déduction faite des frais Stripe.
       </p>
       <p className="text-gray-700">
-        En cas de rupture de stock, nous vous proposerons de modifier la date de livraison ou de vous rembourser (frais Stripe inclus) et vous recevrez également un code de 5% de réduction sur votre prochaine commande.
+        En cas de rupture de stock après commande, nous vous proposerons de modifier la date de livraison ou de vous rembourser (frais Stripe inclus).
       </p>
     </section>
 
@@ -80,7 +84,7 @@ const TermsAndConditionsPage = () => {
         7. DONNÉES PERSONNELLES
       </h2>
       <p className="text-gray-700">
-        Les informations collectées &#40;nom et prénom, adresse e-mail, adresse postale si livraison, informations de paiement, historique de commandes&#41; servent uniquement à créer votre compte, personnaliser votre expérience et assurer la livraison. Nous pouvons utiliser votre e-mail pour des promotions, mais vous pouvez vous y opposer en nous contactant à <span className="font-semibold">[exemple@exemple.fr]</span>. Vos données sont conservées pendant 3 ans après votre dernière commande et sont hébergées via Stripe, Sanity et Clerk.
+        Les informations collectées &#40;nom et prénom, adresse e-mail, adresse postale si livraison, informations de paiement, historique de commandes&#41; servent uniquement à créer votre compte, personnaliser votre expérience et assurer la livraison. Nous pouvons utiliser votre e-mail pour des promotions, mais vous pouvez vous y opposer en nous contactant à <span className="font-semibold">dpo@biss-app.fr</span>. Vos données sont conservées pendant 3 ans après votre dernière commande et sont hébergées via Stripe, Sanity et Clerk.
       </p>
     </section>
 
@@ -89,12 +93,12 @@ const TermsAndConditionsPage = () => {
         8. CONTACT
       </h2>
       <p className="text-gray-700">
-        Pour toute question concernant vos commandes ou nos conditions, veuillez nous contacter à <span className="font-semibold">[exemple@exemple.fr]</span>.
+        Pour toute question concernant vos commandes ou nos conditions, veuillez nous contacter à <span className="font-semibold">contact@biss-app.fr</span>.
       </p>
     </section>
 
     <p className="text-sm text-gray-500 text-center mt-8">
-      Dernière mise à jour : 10 octobre 2025
+      Dernière mise à jour : 21 octobre 2025
     </p>
   </article>
 </main>
