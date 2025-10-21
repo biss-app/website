@@ -11,6 +11,7 @@ import { VisualEditing } from "next-sanity";
 import { SanityLive } from "@/sanity/lib/live";
 import { draftMode } from "next/headers";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
       "Boissons et snacks africains artisanaux à Clermont-Ferrand.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Biss'App – Boissons et snacks africains",
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     title: "Biss'App",
     description:
       "Vente de boissons et snacks africains à Clermont-Ferrand.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://biss-app.fr",
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
       "@context": "https://schema.org",
       "@type": "FoodEstablishment",
       name: "Biss'App",
-      image: "https://biss-app.fr/og-image.jpg",
+      image: "https://biss-app.fr/og-image.png",
       url: "https://biss-app.fr",
       address: {
         "@type": "City",
@@ -117,6 +118,7 @@ export default async function RootLayout({
             },
           }} />
           <SanityLive />
+        <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
