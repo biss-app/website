@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
@@ -7,12 +8,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { frFR } from "@clerk/localizations";
 import { Toaster } from "react-hot-toast";
 import DisableDraftMode from "@/components/DisableDraftMode";
-import { VisualEditing } from "@sanity/visual-editing/react";
-import { SanityLive } from "@/sanity/lib/live";
-import { draftMode } from "next/headers";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import LiveLayout from "../(live)/layout"; // Wrapper client pour SanityLive
+import { draftMode } from "next/headers";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -81,16 +81,14 @@ export default async function RootLayout({
         <body
           className={`${poppins.variable} antialiased min-h-screen flex flex-col`}
         >
-          {draft.isEnabled && (
-            <>
-              <DisableDraftMode />
-              <VisualEditing portal={true} />
-            </>
-          )}
+          {draft.isEnabled && <DisableDraftMode />}
 
           <Header />
 
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow">
+            {/* On wrappe le contenu dans le Client Component LiveLayout */}
+            {draft.isEnabled ? <LiveLayout>{children}</LiveLayout> : children}
+          </main>
 
           <Footer />
 
@@ -103,8 +101,6 @@ export default async function RootLayout({
               },
             }}
           />
-
-          <SanityLive />
 
           {/* 🧩 Données structurées Schema.org */}
           <Script
@@ -129,6 +125,7 @@ export default async function RootLayout({
               }),
             }}
           />
+
           <SpeedInsights />
           <Analytics />
         </body>
