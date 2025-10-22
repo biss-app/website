@@ -593,7 +593,7 @@ export type PRODUCT_BY_CATEGORY_QUERYResult = Array<{
   }>;
 }>;
 // Variable: MY_ORDERS_QUERY
-// Query: *[_type == 'order' && clerkUserId == $userId] | order(orderData desc) {    ...,    products[]{      ...,      product->    }  }
+// Query: *[_type =='order' && clerkUserId == $userId] | order(orderData desc){  ..., products[]{  ..., product->  }}
 export type MY_ORDERS_QUERYResult = Array<{
   _id: string;
   _type: "order";
@@ -645,6 +645,6 @@ declare module "@sanity/client" {
     "*[_type == \"product\" && slug.current == $slug] | order(orderRank asc)[0]": PRODUCT_BY_SLUGResult;
     "*[_type == \"product\" && name match $searchParam] | order(orderRank asc)": PRODUCT_SEARCH_QUERYResult;
     "*[_type == \"product\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(orderRank asc)": PRODUCT_BY_CATEGORY_QUERYResult;
-    "\n  *[_type == 'order' && clerkUserId == $userId] | order(orderData desc) {\n    ...,\n    products[]{\n      ...,\n      product->\n    }\n  }\n": MY_ORDERS_QUERYResult;
+    "*[_type =='order' && clerkUserId == $userId] | order(orderData desc){\n  ..., products[]{\n  ..., product->\n  }\n}": MY_ORDERS_QUERYResult;
   }
 }
