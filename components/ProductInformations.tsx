@@ -101,7 +101,7 @@ export default function ProductInformations({ product }: Props) {
               récupérés en Click&Collect à l&apos;arrêt de tramway Stade M. Michelin.{"\n\n"}
               Pour toute commande passée avant midi, celle-ci pourra être remise
               dès le lendemain. Les commandes passées après midi ne pourront être
-              remises moins de 2 jours avant la date de commande.{"\n\n"}
+              remises moins de 2 jours après le passage de la commande.{"\n\n"}
               Pour plus d&apos;informations, veuillez consulter nos{" "}
               <a href="/cgv" className="text-gold underline hover:text-gold-700">
                 Conditions Générales de Vente

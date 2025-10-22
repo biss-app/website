@@ -24,7 +24,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://biss-app.fr"),
   title: {
-    default: "Biss'App – Boissons & Snacks à Clermont-Ferrand",
+    default: "Biss'App",
     template: "%s | Biss'App",
   },
   description:
@@ -42,21 +42,21 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://biss-app.fr",
     siteName: "Biss'App",
-    title: "Biss'App – Boissons et Snacks à Clermont-Ferrand",
+    title: "Biss'App – Boissons et snacks africains artisanaux",
     description: "Boissons et snacks africains artisanaux à Clermont-Ferrand.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Biss'App – Boissons et snacks africains",
+        alt: "Biss'App – Boissons et snacks africains artisanaux",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Biss'App",
-    description: "Vente de boissons et snacks africains à Clermont-Ferrand.",
+    description: "Boissons et snacks africains artisanaux à Clermont-Ferrand.",
     images: ["/og-image.png"],
   },
   alternates: {

@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     _updatedAt
   }`);
 
-  const staticRoutes: string[] = ["", "/panier", "/mentions-legales", "/politique-de-confidentialite", "/conditions-generales-de-vente"];
+  const staticRoutes: string[] = ["/", "/panier", "/mentions-legales", "/politique-de-confidentialite", "/conditions-generales-de-vente"];
 
   const productRoutes = products.map((p: { slug: string; _updatedAt: string }) => ({
     url: `${baseUrl}/produits/${p.slug}`,
