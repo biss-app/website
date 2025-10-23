@@ -105,22 +105,19 @@ const SingleProductPage = async ({
       listItem: {
         bullet: ({ children }) => (
           <li className="flex mb-1">
-  <CircleCheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mr-2.5 inline-block align-middle -mt-[4.25px]" />
-  <span className="align-middle">{children}</span>
-</li>
+            <CircleCheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mr-2.5 inline-block align-middle -mt-[4.25px]" />
+            <span className="align-middle">{children}</span>
+          </li>
 
 
 
-        ),
-        number: ({ children }) => <li className="mb-1">{children}</li>,
-      },
-    }}
-  />
-</section>
-
-
+                  ),
+                  number: ({ children }) => <li className="mb-1">{children}</li>,
+                },
+              }}
+            />
+          </section>
           <AddToCartButton product={product!} />
-
           <ProductInformations product={product!} />
         </div>
       </Container>
