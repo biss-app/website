@@ -1,7 +1,6 @@
 // components/ProductJsonLD.tsx
 import React from 'react';
 import { PortableTextBlock } from '@portabletext/react';
-import { urlFor } from '@/sanity/lib/image';
 import { getLastSentence } from '@/lib/getLastSentence';
 
 interface ProductJsonLDProps {

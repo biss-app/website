@@ -22,13 +22,13 @@ const SingleProductPage = async ({
   return (
     <div>
       <ProductJsonLD
-        name={product?.name!}
-        image={urlFor(product?.image!).url()}
+        name={product?.name ?? "Produit Biss'App"}
+        image={product?.image ? urlFor(product.image).url() : "@/favicon.ico"}
         description={product?.description as PortableTextBlock[]}
-        price={product?.price!}
+        price={product?.price != null ? (product.discount ? product.price - product.discount : product.price) : 0}
         discount={product?.discount}
         stock={product?.stock}
-        slug={product?.slug!.current!}
+        slug={product?.slug?.current ?? ""}
       />
       <Container className="flex flex-col md:flex-row gap-10 py-10">
         {/* Colonne gauche : image + texte IA */}
