@@ -8,6 +8,7 @@ import AddToCartButton from '@/components/AddToCartButton';
 import ProductInformations from '@/components/ProductInformations';
 import { PortableText, PortableTextBlock } from '@portabletext/react';
 import { CircleCheckIcon } from '@/components/ui/circle-check';
+import ProductJsonLD from '@/components/ProductJsonLD';
 
 const SingleProductPage = async ({
   params,
@@ -20,6 +21,15 @@ const SingleProductPage = async ({
 
   return (
     <div>
+      <ProductJsonLD
+        name={product?.name!}
+        image={urlFor(product?.image!).url()}
+        description={product?.description as PortableTextBlock[]}
+        price={product?.price!}
+        discount={product?.discount}
+        stock={product?.stock}
+        slug={product?.slug!.current!}
+      />
       <Container className="flex flex-col md:flex-row gap-10 py-10">
         {/* Colonne gauche : image + texte IA */}
         <div className="w-full md:w-1/2 flex flex-col flex-shrink-0">
