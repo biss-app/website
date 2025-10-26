@@ -75,6 +75,9 @@ export default async function RootLayout({
 }) {
   const draft = await draftMode();
 
+const isProductPage =
+  typeof window !== "undefined" && window.location.pathname.startsWith("/produit");
+
   return (
     <ClerkProvider dynamic localization={frFR}>
       <html lang="fr">
@@ -103,7 +106,8 @@ export default async function RootLayout({
           />
 
           {/* 🧩 Données structurées Schema.org */}
-          <Script
+          {!isProductPage && (
+            <Script
             id="schema-localbusiness"
             type="application/ld+json"
             strategy="afterInteractive"
@@ -124,7 +128,8 @@ export default async function RootLayout({
                 priceRange: "€",
               }),
             }}
-          />
+              />
+          )}
 
           <SpeedInsights />
           <Analytics />
