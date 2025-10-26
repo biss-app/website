@@ -6,7 +6,7 @@ import { urlFor } from '@/sanity/lib/image';
 import PriceView from '@/components/PriceView';
 import AddToCartButton from '@/components/AddToCartButton';
 import ProductInformations from '@/components/ProductInformations';
-import { PortableText, PortableTextBlock } from '@portabletext/react';
+import { PortableText } from '@portabletext/react';
 import { CircleCheckIcon } from '@/components/ui/circle-check';
 import ProductJsonLD from '@/components/ProductJsonLD';
 
