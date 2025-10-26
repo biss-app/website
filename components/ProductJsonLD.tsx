@@ -1,4 +1,3 @@
-// components/ProductJsonLD.tsx
 import React from "react"
 
 type ProductJsonLDProps = {
@@ -10,6 +9,26 @@ type ProductJsonLDProps = {
   slug: string
   inStock: boolean
   label?: string
+}
+
+interface JsonLDOffer {
+  "@type": "Offer"
+  priceCurrency: string
+  price: string
+  availability: string
+  url: string
+  priceValidUntil?: string
+}
+
+interface JsonLDProduct {
+  "@context": "https://schema.org/"
+  "@type": "Product"
+  name: string
+  image: string
+  description: string
+  sku: string
+  category?: string
+  offers: JsonLDOffer
 }
 
 export default function ProductJsonLD({
@@ -26,7 +45,7 @@ export default function ProductJsonLD({
   const today = new Date()
   const validUntil = new Date("2025-11-21")
 
-  const jsonLd: Record<string, any> = {
+  const jsonLd: JsonLDProduct = {
     "@context": "https://schema.org/",
     "@type": "Product",
     name,

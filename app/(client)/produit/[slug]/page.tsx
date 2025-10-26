@@ -19,16 +19,30 @@ const SingleProductPage = async ({
 
   const product = await getProductsBySlug(slug)!;
 
-  const portableTextToString = (blocks: any[] | undefined): string => {
-    if (!blocks) return ""
-    return blocks
-      .map((block: any) =>
-        "children" in block && Array.isArray(block.children)
-          ? block.children.map((child: any) => child?.text || "").join("")
-          : ""
-      )
-      .join("\n")
-  }
+  interface PortableTextChild {
+  _type: string;
+  text?: string;
+  marks?: string[];
+  _key: string;
+}
+
+interface PortableTextBlock {
+  _type: string;
+  style?: string;
+  children?: PortableTextChild[];
+  _key: string;
+}
+
+const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
+  if (!blocks) return "";
+  return blocks
+    .map((block) =>
+      block.children && Array.isArray(block.children)
+        ? block.children.map((child) => child.text || "").join("")
+        : ""
+    )
+    .join("\n");
+};
 
   const descriptionString = portableTextToString(product?.description)
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean)
