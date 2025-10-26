@@ -1,3 +1,6 @@
+// components/ProductJsonLD.tsx
+import React from "react"
+
 type ProductJsonLDProps = {
   name: string
   image: string
@@ -6,6 +9,7 @@ type ProductJsonLDProps = {
   discount?: number
   slug: string
   inStock: boolean
+  label?: string
 }
 
 export default function ProductJsonLD({
@@ -13,34 +17,36 @@ export default function ProductJsonLD({
   image,
   description,
   price,
-  discount,
+  discount = 0,
   slug,
   inStock,
+  label,
 }: ProductJsonLDProps) {
-  // ✅ Calcul sécurisé du prix final
-  const finalPrice = Math.max(
-    discount ? price * (1 - discount / 100) : price,
-    0
-  )
+  const finalPrice = price * (1 - discount / 100)
+  const today = new Date()
+  const validUntil = new Date("2025-11-21")
 
-  const jsonLd = {
+  const jsonLd: Record<string, any> = {
     "@context": "https://schema.org/",
     "@type": "Product",
     name,
-    image: image || "https://biss-app.fr/favicon.ico",
+    image,
     description,
     sku: slug,
     offers: {
       "@type": "Offer",
       priceCurrency: "EUR",
       price: finalPrice.toFixed(2),
-      priceValidUntil: "2025-11-21",
       availability: inStock
         ? "http://schema.org/InStock"
         : "http://schema.org/OutOfStock",
       url: `https://biss-app.fr/produit/${slug}`,
     },
   }
+
+  if (label) jsonLd.category = label
+
+  if (today <= validUntil) jsonLd.offers.priceValidUntil = "2025-11-21"
 
   return (
     <script

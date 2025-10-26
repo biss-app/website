@@ -85,7 +85,7 @@ export default async function RootLayout({
 
           <Header />
 
-          <main className="flex-grow">
+          <main className="grow">
             {/* On wrappe le contenu dans le Client Component LiveLayout */}
             {draft.isEnabled ? <LiveLayout>{children}</LiveLayout> : children}
           </main>
