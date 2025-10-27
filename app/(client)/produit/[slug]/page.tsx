@@ -41,10 +41,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// --- Page produit ---
-const SingleProductPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params;
-  const product = await getProductsBySlug(slug)!;
+  const SingleProductPage = async ({
+    params,
+  }: {
+    params: { slug: string };
+  }) => {
+    const { slug } = params;
+    const product = await getProductsBySlug(slug)!;
 
   interface PortableTextChild {
     _type: string;
