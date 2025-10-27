@@ -33,14 +33,18 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-interface PageProps {
+type PageProps = {
   params: {
     slug: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
 
-const SingleProductPage = async ({ params }: PageProps) => {
+// Update the component signature to match Next.js conventions
+export default async function SingleProductPage({
+  params,
+  searchParams = {},
+}: PageProps) {
   const { slug } = params;
   const product = await getProductsBySlug(slug)!;
 
@@ -147,5 +151,3 @@ const SingleProductPage = async ({ params }: PageProps) => {
     </div>
   );
 };
-
-export default SingleProductPage;
