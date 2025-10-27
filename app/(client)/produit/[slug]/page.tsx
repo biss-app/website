@@ -10,12 +10,27 @@ import { PortableText } from '@portabletext/react';
 import { CircleCheckIcon } from '@/components/ui/circle-check';
 import ProductJsonLD from '@/components/ProductJsonLD';
 
+// --- Metadata dynamique pour Next 13 ---
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const product = await getProductsBySlug(params.slug);
 
+  interface PortableTextChild {
+    _type: string;
+    text?: string;
+    marks?: string[];
+    _key: string;
+  }
+
+  interface PortableTextBlock {
+    _type: string;
+    style?: string;
+    children?: PortableTextChild[];
+    _key: string;
+  }
+
   const descriptionText = product?.description
-    ?.map((block: any) =>
-      block.children?.map((child: any) => child.text).join("") || ""
+    ?.map((block: PortableTextBlock) =>
+      block.children?.map((child: PortableTextChild) => child.text || "").join("") || ""
     )
     .join(" ")
     .slice(0, 160) || "";
@@ -26,49 +41,45 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-const SingleProductPage = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) => {
+// --- Page produit ---
+const SingleProductPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
-
   const product = await getProductsBySlug(slug)!;
 
   interface PortableTextChild {
-  _type: string;
-  text?: string;
-  marks?: string[];
-  _key: string;
-}
+    _type: string;
+    text?: string;
+    marks?: string[];
+    _key: string;
+  }
 
-interface PortableTextBlock {
-  _type: string;
-  style?: string;
-  children?: PortableTextChild[];
-  _key: string;
-}
+  interface PortableTextBlock {
+    _type: string;
+    style?: string;
+    children?: PortableTextChild[];
+    _key: string;
+  }
 
-const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
-  if (!blocks) return "";
-  return blocks
-    .map((block) =>
-      block.children && Array.isArray(block.children)
-        ? block.children.map((child) => child.text || "").join("")
-        : ""
-    )
-    .join("\n");
-};
+  const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
+    if (!blocks) return "";
+    return blocks
+      .map((block) =>
+        block.children && Array.isArray(block.children)
+          ? block.children.map((child) => child.text || "").join("")
+          : ""
+      )
+      .join("\n");
+  };
 
-  const descriptionString = portableTextToString(product?.description)
-  const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean)
-  const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : ""
+  const descriptionString = portableTextToString(product?.description);
+  const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
+  const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
   const finalPrice = product?.price != null
     ? product.discount
       ? product.price * (1 - product.discount / 100)
       : product.price
-    : 0
-    
+    : 0;
+
   return (
     <div>
       <ProductJsonLD
@@ -84,7 +95,6 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
       <Container className="flex flex-col md:flex-row gap-10 py-10">
         {/* Colonne gauche : image + texte IA */}
         <div className="w-full md:w-1/2 flex flex-col shrink-0">
-          {/* Conteneur pour garder l'image carrée */}
           <div className="relative w-full aspect-square overflow-hidden rounded-md border border-gold/20 shadow-md group">
             <Image
               src={urlFor(product!.image!).url()}
@@ -94,7 +104,6 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
             />
           </div>
 
-          {/* Texte IA juste en dessous de l'image */}
           <div className="flex items-center justify-center mt-1">
             <p className="text-xs text-gray-500 italic text-center px-2">
               Image générée par Intelligence Artificielle, à titre illustratif uniquement. Visuel non contractuel.
@@ -122,53 +131,46 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
           )}
 
           <section
-  className="text-sm text-gray-600 tracking-wide whitespace-pre-line"
-  aria-label="Description du produit"
->
-  <PortableText
-    value={product!.description as PortableTextBlock[]}
-    components={{
-      block: {
-        normal: ({ children }) => <p className="mb-4">{children}</p>,
-        h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
-        h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
-        h3: ({ children }) => <h3 className="text-xl font-medium mb-2">{children}</h3>,
-        h4: ({ children }) => <h4 className="text-lg font-medium mb-2">{children}</h4>,
-        h5: ({ children }) => <h5 className="text-base font-medium mb-1">{children}</h5>,
-        h6: ({ children }) => <h6 className="text-sm font-medium mb-1">{children}</h6>,
-        blockquote: ({ children }) => (
-          <blockquote className="pl-4 border-l-4 italic mb-4">{children}</blockquote>
-        ),
-      },
-      marks: {
-        strong: ({ children }) => <strong>{children}</strong>,
-        em: ({ children }) => <em>{children}</em>,
-        code: ({ children }) => (
-          <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>
-        ),
-        underline: ({ children }) => <u>{children}</u>,
-        strike: ({ children }) => <s>{children}</s>,
-        link: ({ children, value }) => (
-          <a
-            href={value.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline"
+            className="text-sm text-gray-600 tracking-wide whitespace-pre-line"
+            aria-label="Description du produit"
           >
-            {children}
-          </a>
-        ),
-      },
-      list: {
-        bullet: ({ children }) => <ul className="mb-4 pl-0">{children}</ul>,
-        number: ({ children }) => <ol className="list-decimal pl-6 mb-4">{children}</ol>,
-      },
-      listItem: {
-        bullet: ({ children }) => (
-          <li className="flex mb-1">
-            <CircleCheckIcon className="w-5 h-5 text-green-500 shrink-0 mr-2.5 inline-block align-middle -mt-[4.25px]" />
-            <span className="align-middle">{children}</span>
-          </li>
+            <PortableText
+              value={product!.description as PortableTextBlock[]}
+              components={{
+                block: {
+                  normal: ({ children }) => <p className="mb-4">{children}</p>,
+                  h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+                  h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
+                  h3: ({ children }) => <h3 className="text-xl font-medium mb-2">{children}</h3>,
+                  h4: ({ children }) => <h4 className="text-lg font-medium mb-2">{children}</h4>,
+                  h5: ({ children }) => <h5 className="text-base font-medium mb-1">{children}</h5>,
+                  h6: ({ children }) => <h6 className="text-sm font-medium mb-1">{children}</h6>,
+                  blockquote: ({ children }) => (
+                    <blockquote className="pl-4 border-l-4 italic mb-4">{children}</blockquote>
+                  ),
+                },
+                marks: {
+                  strong: ({ children }) => <strong>{children}</strong>,
+                  em: ({ children }) => <em>{children}</em>,
+                  code: ({ children }) => <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>,
+                  underline: ({ children }) => <u>{children}</u>,
+                  strike: ({ children }) => <s>{children}</s>,
+                  link: ({ children, value }) => (
+                    <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                      {children}
+                    </a>
+                  ),
+                },
+                list: {
+                  bullet: ({ children }) => <ul className="mb-4 pl-0">{children}</ul>,
+                  number: ({ children }) => <ol className="list-decimal pl-6 mb-4">{children}</ol>,
+                },
+                listItem: {
+                  bullet: ({ children }) => (
+                    <li className="flex mb-1">
+                      <CircleCheckIcon className="w-5 h-5 text-green-500 shrink-0 mr-2.5 inline-block align-middle -mt-[4.25px]" />
+                      <span className="align-middle">{children}</span>
+                    </li>
                   ),
                   number: ({ children }) => <li className="mb-1">{children}</li>,
                 },
