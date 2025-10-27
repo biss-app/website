@@ -10,6 +10,22 @@ import { PortableText } from '@portabletext/react';
 import { CircleCheckIcon } from '@/components/ui/circle-check';
 import ProductJsonLD from '@/components/ProductJsonLD';
 
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const product = await getProductsBySlug(params.slug);
+
+  const descriptionText = product?.description
+    ?.map((block: any) =>
+      block.children?.map((child: any) => child.text).join("") || ""
+    )
+    .join(" ")
+    .slice(0, 160) || "";
+
+  return {
+    title: `${product?.name} | Biss'App`,
+    description: descriptionText || "Découvrez ce produit africain artisanal sur Biss'App.",
+  };
+}
+
 const SingleProductPage = async ({
   params,
 }: {
