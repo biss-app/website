@@ -10,73 +10,41 @@ import { PortableText } from '@portabletext/react';
 import { CircleCheckIcon } from '@/components/ui/circle-check';
 import ProductJsonLD from '@/components/ProductJsonLD';
 
-// --- Metadata dynamique pour Next 13 ---
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = await getProductsBySlug(params.slug);
-
-  interface PortableTextChild {
-    _type: string;
-    text?: string;
-    marks?: string[];
-    _key: string;
-  }
-
-  interface PortableTextBlock {
-    _type: string;
-    style?: string;
-    children?: PortableTextChild[];
-    _key: string;
-  }
-
-  const descriptionText = product?.description
-    ?.map((block: PortableTextBlock) =>
-      block.children?.map((child: PortableTextChild) => child.text || "").join("") || ""
-    )
-    .join(" ")
-    .slice(0, 160) || "";
-
-  return {
-    title: `${product?.name} | Biss'App`,
-    description: descriptionText || "Découvrez ce produit africain artisanal sur Biss'App.",
-  };
+interface PortableTextChild {
+  _type: string;
+  text?: string;
+  marks?: string[];
+  _key: string;
 }
 
-  const SingleProductPage = async ({
-    params,
-  }: {
-    params: { slug: string };
-  }) => {
-    const { slug } = params;
-    const product = await getProductsBySlug(slug)!;
+interface PortableTextBlock {
+  _type: string;
+  style?: string;
+  children?: PortableTextChild[];
+  _key: string;
+}
 
-  interface PortableTextChild {
-    _type: string;
-    text?: string;
-    marks?: string[];
-    _key: string;
-  }
+interface PageProps {
+  params: { slug: string };
+}
 
-  interface PortableTextBlock {
-    _type: string;
-    style?: string;
-    children?: PortableTextChild[];
-    _key: string;
-  }
+const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
+  if (!blocks) return "";
+  return blocks
+    .map((block) =>
+      block.children?.map((child) => child.text || "").join("") || ""
+    )
+    .join("\n");
+};
 
-  const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
-    if (!blocks) return "";
-    return blocks
-      .map((block) =>
-        block.children && Array.isArray(block.children)
-          ? block.children.map((child) => child.text || "").join("")
-          : ""
-      )
-      .join("\n");
-  };
+const SingleProductPage = async ({ params }: PageProps) => {
+  const { slug } = params;
+  const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
   const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
+
   const finalPrice = product?.price != null
     ? product.discount
       ? product.price * (1 - product.discount / 100)
@@ -106,7 +74,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
               className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
             />
           </div>
-
           <div className="flex items-center justify-center mt-1">
             <p className="text-xs text-gray-500 italic text-center px-2">
               Image générée par Intelligence Artificielle, à titre illustratif uniquement. Visuel non contractuel.
@@ -148,9 +115,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
                   h4: ({ children }) => <h4 className="text-lg font-medium mb-2">{children}</h4>,
                   h5: ({ children }) => <h5 className="text-base font-medium mb-1">{children}</h5>,
                   h6: ({ children }) => <h6 className="text-sm font-medium mb-1">{children}</h6>,
-                  blockquote: ({ children }) => (
-                    <blockquote className="pl-4 border-l-4 italic mb-4">{children}</blockquote>
-                  ),
+                  blockquote: ({ children }) => <blockquote className="pl-4 border-l-4 italic mb-4">{children}</blockquote>,
                 },
                 marks: {
                   strong: ({ children }) => <strong>{children}</strong>,
@@ -158,11 +123,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
                   code: ({ children }) => <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>,
                   underline: ({ children }) => <u>{children}</u>,
                   strike: ({ children }) => <s>{children}</s>,
-                  link: ({ children, value }) => (
-                    <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-                      {children}
-                    </a>
-                  ),
+                  link: ({ children, value }) => <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">{children}</a>,
                 },
                 list: {
                   bullet: ({ children }) => <ul className="mb-4 pl-0">{children}</ul>,
@@ -180,6 +141,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
               }}
             />
           </section>
+
           <AddToCartButton product={product!} />
           <ProductInformations product={product!} />
         </div>
