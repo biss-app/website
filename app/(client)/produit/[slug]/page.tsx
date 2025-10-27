@@ -24,10 +24,6 @@ interface PortableTextBlock {
   _key: string;
 }
 
-interface PageProps {
-  params: { slug: string };
-}
-
 const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
   if (!blocks) return "";
   return blocks
@@ -37,7 +33,7 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-const SingleProductPage = async ({ params }: PageProps) => {
+const SingleProductPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const product = await getProductsBySlug(slug)!;
 
@@ -64,7 +60,6 @@ const SingleProductPage = async ({ params }: PageProps) => {
         label={product?.label}
       />
       <Container className="flex flex-col md:flex-row gap-10 py-10">
-        {/* Colonne gauche : image + texte IA */}
         <div className="w-full md:w-1/2 flex flex-col shrink-0">
           <div className="relative w-full aspect-square overflow-hidden rounded-md border border-gold/20 shadow-md group">
             <Image
@@ -83,7 +78,6 @@ const SingleProductPage = async ({ params }: PageProps) => {
           </div>
         </div>
 
-        {/* Colonne droite : infos + actions */}
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <p className="text-4xl font-bold mb-2">{product!.name}</p>
 
@@ -100,10 +94,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
             </p>
           )}
 
-          <section
-            className="text-sm text-gray-600 tracking-wide whitespace-pre-line"
-            aria-label="Description du produit"
-          >
+          <section className="text-sm text-gray-600 tracking-wide whitespace-pre-line" aria-label="Description du produit">
             <PortableText
               value={product!.description as PortableTextBlock[]}
               components={{
