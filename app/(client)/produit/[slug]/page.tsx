@@ -33,6 +33,13 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
 const SingleProductPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const product = await getProductsBySlug(slug)!;
