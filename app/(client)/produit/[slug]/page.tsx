@@ -40,7 +40,7 @@ interface PageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const SingleProductPage = async ({ params }: { params: { slug: string } }) => {
+const SingleProductPage = async ({ params }: PageProps) => {
   const { slug } = params;
   const product = await getProductsBySlug(slug)!;
 
