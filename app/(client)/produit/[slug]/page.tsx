@@ -33,41 +33,53 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-// On supprime le type PageProps explicite pour éviter le conflit
-export default async function Page({ params }: any) { 
-  const slug = params.slug; // Next.js fournit params correctement
-  const product = await getProductsBySlug(slug)!;
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
 
-  const descriptionString = portableTextToString(product?.description);
+// Page principale
+export default async function SingleProductPage({ params }: PageProps) {
+  const { slug } = params;
+  const product = await getProductsBySlug(slug);
+
+  // Gestion du cas où aucun produit n'est trouvé
+  if (!product) {
+    return <p>Produit introuvable</p>;
+  }
+
+  const descriptionString = portableTextToString(product.description);
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
   const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
 
-  const finalPrice = product?.price != null
+  const finalPrice = product.price != null
     ? product.discount
       ? product.price * (1 - product.discount / 100)
       : product.price
     : 0;
 
-  const isSnack = product?.name === "Mikatés" || product?.name === "Chips de banane plantain";
+  // Gestion du type Snack / Boisson
+  const isSnack = product.name === "Mikatés" || product.name === "Chips de banane plantain";
   const categoryLabel = isSnack ? "Snack by Biss'App" : "Boisson by Biss'App";
 
   return (
     <div>
       <ProductJsonLD
-        name={product?.name ?? "Produit Biss'App"}
-        image={product?.image ? urlFor(product.image).url() : "/favicon.ico"}
+        name={product.name ?? "Produit Biss'App"}
+        image={product.image ? urlFor(product.image).url() : "/favicon.ico"}
         description={lastLine}
         price={finalPrice}
-        discount={product?.discount}
-        inStock={product?.stock != null && product.stock > 0}
-        slug={product?.slug?.current ?? ""}
-        label={product?.label}
+        discount={product.discount}
+        inStock={product.stock != null && product.stock > 0}
+        slug={product.slug?.current ?? ""}
+        label={product.label}
       />
       <Container className="flex flex-col md:flex-row gap-10 py-10">
         <div className="w-full md:w-1/2 flex flex-col shrink-0">
           <div className="relative w-full aspect-square overflow-hidden rounded-md border border-gold/20 shadow-md group">
             <Image
-              src={urlFor(product!.image!)
+              src={urlFor(product.image!)
                 .width(1200)
                 .height(1200)
                 .fit("crop")
@@ -77,7 +89,7 @@ export default async function Page({ params }: any) {
                 .auto("format")
                 .bg("ffffff")
                 .url()}
-              alt={product!.name!}
+              alt={product.name!}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
@@ -93,18 +105,18 @@ export default async function Page({ params }: any) {
         </div>
 
         <div className="w-full md:w-1/2 flex flex-col gap-5">
-          <p className="text-4xl font-bold mb-2">{product!.name}</p>
+          <p className="text-4xl font-bold mb-2">{product.name}</p>
 
           <p className="text-gray-500 font-medium">{categoryLabel}</p>
 
           <PriceView
-            price={product!.price}
-            discount={product!.discount}
-            label={product!.label}
+            price={product.price}
+            discount={product.discount}
+            label={product.label}
             className="text-lg font-bold"
           />
 
-          {product!.stock && (
+          {product.stock && (
             <p className="bg-green-100 w-24 text-center text-green-600 text-sm py-2.5 font-semibold rounded-lg">
               En stock
             </p>
@@ -112,7 +124,7 @@ export default async function Page({ params }: any) {
 
           <section className="text-sm text-gray-600 tracking-wide whitespace-pre-line" aria-label="Description du produit">
             <PortableText
-              value={product!.description as PortableTextBlock[]}
+              value={product.description as PortableTextBlock[]}
               components={{
                 block: {
                   normal: ({ children }) => <p className="mb-4">{children}</p>,
@@ -149,8 +161,8 @@ export default async function Page({ params }: any) {
             />
           </section>
 
-          <AddToCartButton product={product!} />
-          <ProductInformations product={product!} />
+          <AddToCartButton product={product} />
+          <ProductInformations product={product} />
         </div>
       </Container>
     </div>
