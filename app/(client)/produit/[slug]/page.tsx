@@ -33,8 +33,15 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+// On définit explicitement les props attendues
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = params; // Pas d'await ici
   const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
@@ -47,7 +54,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
       : product.price
     : 0;
 
-  // Condition Snack/Boisson
   const isSnack = product?.name === "Mikatés" || product?.name === "Chips de banane plantain";
   const categoryLabel = isSnack ? "Snack by Biss'App" : "Boisson by Biss'App";
 
