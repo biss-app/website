@@ -138,9 +138,9 @@ export default function ProductInformations({ product }: Props) {
               <br/>
               Il assure une protection optimale des boissons, en préservant leurs arômes, leur fraîcheur et leurs qualités naturelles tout au long de leur conservation.
               <br/><br/>
-              Bien que le verre soit également recyclable et bénéficie d'un bon taux de collecte, son empreinte carbone reste nettement plus élevée que celle du PET.
+              Bien que le verre soit également recyclable et bénéficie d&rsquo;un bon taux de collecte, son empreinte carbone reste nettement plus élevée que celle du PET.
               <br/>
-              Grâce à sa légèreté, sa résistance et son impact environnemental réduit, le PET représente une solution d'emballage à la fois fiable, sécurisée et durable.
+              Grâce à sa légèreté, sa résistance et son impact environnemental réduit, le PET représente une solution d&rsquo;emballage à la fois fiable, sécurisée et durable.
               <br/><br/>
               <span className="font-semibold">
                 Nous vous encourageons, pour notre si belle planète, à réutiliser les bouteilles PET qui vous seront remises lors de la livraison.
