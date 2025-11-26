@@ -33,22 +33,7 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-  /* searchParams?: { [key: string]: string | string[] | undefined }; */
-};
-
-// Update the component signature to match Next.js conventions
-/* export default async function SingleProductPage({
-  params,
-   searchParams = {},
-}: PageProps) {
-  const { slug } = await params;
-  const product = await getProductsBySlug(slug)!; */
-
-  export default async function SingleProductPage({ params }: PageProps) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const product = await getProductsBySlug(slug)!;
 
@@ -61,6 +46,10 @@ type PageProps = {
       ? product.price * (1 - product.discount / 100)
       : product.price
     : 0;
+
+  // Condition Snack/Boisson
+  const isSnack = product?.name === "Mikatés" || product?.name === "Chips de banane plantain";
+  const categoryLabel = isSnack ? "Snack by Biss'App" : "Boisson by Biss'App";
 
   return (
     <div>
@@ -93,7 +82,6 @@ type PageProps = {
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
             />
-
           </div>
           <div className="flex items-center justify-center mt-1">
             <p className="text-xs text-gray-500 italic text-center px-2">
@@ -106,6 +94,8 @@ type PageProps = {
 
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <p className="text-4xl font-bold mb-2">{product!.name}</p>
+
+          <p className="text-gray-500 font-medium">{categoryLabel}</p>
 
           <PriceView
             price={product!.price}
@@ -158,10 +148,11 @@ type PageProps = {
               }}
             />
           </section>
+
           <AddToCartButton product={product!} />
           <ProductInformations product={product!} />
         </div>
       </Container>
     </div>
   );
-};
+}
