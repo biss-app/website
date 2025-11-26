@@ -1,15 +1,15 @@
-import { getProductsBySlug } from '@/sanity/helpers';
+"use client";
+
+import { getProductsBySlug } from "@/sanity/helpers";
 import Container from "@/components/Container";
-import React from 'react';
-import Image from 'next/image';
-import { urlFor } from '@/sanity/lib/image';
-import PriceView from '@/components/PriceView';
-import AddToCartButton from '@/components/AddToCartButton';
-import ProductInformations from '@/components/ProductInformations';
-import { PortableText } from '@portabletext/react';
-import { CircleCheckIcon } from '@/components/ui/circle-check';
-import ProductJsonLD from '@/components/ProductJsonLD';
-import type { Product } from '@/types';
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import PriceView from "@/components/PriceView";
+import AddToCartButton from "@/components/AddToCartButton";
+import ProductInformations from "@/components/ProductInformations";
+import { PortableText } from "@portabletext/react";
+import { CircleCheckIcon } from "@/components/ui/circle-check";
+import ProductJsonLD from "@/components/ProductJsonLD";
 
 interface PortableTextChild {
   _type: string;
@@ -34,15 +34,13 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
+interface Params {
+  slug: string;
 }
 
-export default async function SingleProductPage({ params }: PageProps) {
-  const slug = params.slug;
-  const product: Product | null = await getProductsBySlug(slug);
+export default async function SingleProductPage({ params }: { params: Params }) {
+  const { slug } = params;
+  const product = await getProductsBySlug(slug);
 
   if (!product) {
     return <p>Produit introuvable.</p>;
@@ -50,9 +48,7 @@ export default async function SingleProductPage({ params }: PageProps) {
 
   const descriptionString = portableTextToString(product.description);
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
-  const lastLine = descriptionLines.length
-    ? descriptionLines[descriptionLines.length - 1]
-    : "";
+  const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
 
   const finalPrice =
     product.price != null
@@ -73,6 +69,7 @@ export default async function SingleProductPage({ params }: PageProps) {
         slug={product.slug?.current ?? ""}
         label={product.label}
       />
+
       <Container className="flex flex-col md:flex-row gap-10 py-10">
         {/* Image */}
         <div className="w-full md:w-1/2 flex flex-col shrink-0">
@@ -88,22 +85,20 @@ export default async function SingleProductPage({ params }: PageProps) {
                 .auto("format")
                 .bg("ffffff")
                 .url()}
-              alt={product.name!}
+              alt={product.name ?? "Produit Biss'App"}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
             />
           </div>
-          <div className="flex items-center justify-center mt-1">
-            <p className="text-xs text-gray-500 italic text-center px-2">
-              Image générée par Intelligence Artificielle, à titre illustratif uniquement. Visuel non contractuel.
-              <br />
-              (mais on fait de notre mieux pour que ça soit pareil !)
-            </p>
-          </div>
+          <p className="flex items-center justify-center mt-1 text-xs text-gray-500 italic text-center px-2">
+            Image générée par Intelligence Artificielle, à titre illustratif uniquement.
+            <br />
+            (Visuel non contractuel)
+          </p>
         </div>
 
-        {/* Détails produit */}
+        {/* Infos produit */}
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <p className="text-4xl font-bold mb-2">{product.name}</p>
 
@@ -143,7 +138,11 @@ export default async function SingleProductPage({ params }: PageProps) {
                   code: ({ children }) => <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>,
                   underline: ({ children }) => <u>{children}</u>,
                   strike: ({ children }) => <s>{children}</s>,
-                  link: ({ children, value }) => <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">{children}</a>,
+                  link: ({ children, value }) => (
+                    <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                      {children}
+                    </a>
+                  ),
                 },
                 list: {
                   bullet: ({ children }) => <ul className="mb-4 pl-0">{children}</ul>,
