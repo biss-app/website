@@ -41,11 +41,15 @@ type PageProps = {
 };
 
 // Update the component signature to match Next.js conventions
-export default async function SingleProductPage({
+/* export default async function SingleProductPage({
   params,
-  /* searchParams = {}, */
+   searchParams = {},
 }: PageProps) {
   const { slug } = await params;
+  const product = await getProductsBySlug(slug)!; */
+
+  export default async function SingleProductPage({ params }: PageProps) {
+  const slug = params.slug;
   const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
