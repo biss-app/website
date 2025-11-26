@@ -11,7 +11,6 @@ import { CircleCheckIcon } from '@/components/ui/circle-check';
 import ProductJsonLD from '@/components/ProductJsonLD';
 import type { Product } from '@/types';
 
-// Types pour le texte portable
 interface PortableTextChild {
   _type: string;
   text?: string;
@@ -26,15 +25,15 @@ interface PortableTextBlock {
   _key: string;
 }
 
-// Convertir les blocks en string simple
 const portableTextToString = (blocks: PortableTextBlock[] | undefined): string => {
   if (!blocks) return "";
   return blocks
-    .map(block => block.children?.map(child => child.text || "").join("") || "")
+    .map((block) =>
+      block.children?.map((child) => child.text || "").join("") || ""
+    )
     .join("\n");
 };
 
-// Props strictement typées pour une page dynamique Next.js
 interface PageProps {
   params: {
     slug: string;
@@ -43,19 +42,24 @@ interface PageProps {
 
 export default async function SingleProductPage({ params }: PageProps) {
   const slug = params.slug;
-  const product = await getProductsBySlug(slug);
+  const product: Product | null = await getProductsBySlug(slug);
 
-  if (!product) return <div>Produit introuvable</div>;
+  if (!product) {
+    return <p>Produit introuvable.</p>;
+  }
 
   const descriptionString = portableTextToString(product.description);
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
-  const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
+  const lastLine = descriptionLines.length
+    ? descriptionLines[descriptionLines.length - 1]
+    : "";
 
-  const finalPrice = product.price != null
-    ? product.discount
-      ? product.price * (1 - product.discount / 100)
-      : product.price
-    : 0;
+  const finalPrice =
+    product.price != null
+      ? product.discount
+        ? product.price * (1 - product.discount / 100)
+        : product.price
+      : 0;
 
   return (
     <div>
@@ -69,28 +73,26 @@ export default async function SingleProductPage({ params }: PageProps) {
         slug={product.slug?.current ?? ""}
         label={product.label}
       />
-
       <Container className="flex flex-col md:flex-row gap-10 py-10">
+        {/* Image */}
         <div className="w-full md:w-1/2 flex flex-col shrink-0">
           <div className="relative w-full aspect-square overflow-hidden rounded-md border border-gold/20 shadow-md group">
-            {product.image && (
-              <Image
-                src={urlFor(product.image)
-                  .width(1200)
-                  .height(1200)
-                  .fit("crop")
-                  .crop("entropy")
-                  .dpr(2)
-                  .quality(80)
-                  .auto("format")
-                  .bg("ffffff")
-                  .url()}
-                alt={product.name ?? "Produit Biss'App"}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
-              />
-            )}
+            <Image
+              src={urlFor(product.image!)
+                .width(1200)
+                .height(1200)
+                .fit("crop")
+                .crop("entropy")
+                .dpr(2)
+                .quality(80)
+                .auto("format")
+                .bg("ffffff")
+                .url()}
+              alt={product.name!}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
+            />
           </div>
           <div className="flex items-center justify-center mt-1">
             <p className="text-xs text-gray-500 italic text-center px-2">
@@ -101,6 +103,7 @@ export default async function SingleProductPage({ params }: PageProps) {
           </div>
         </div>
 
+        {/* Détails produit */}
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <p className="text-4xl font-bold mb-2">{product.name}</p>
 
@@ -117,7 +120,10 @@ export default async function SingleProductPage({ params }: PageProps) {
             </p>
           )}
 
-          <section className="text-sm text-gray-600 tracking-wide whitespace-pre-line" aria-label="Description du produit">
+          <section
+            className="text-sm text-gray-600 tracking-wide whitespace-pre-line"
+            aria-label="Description du produit"
+          >
             <PortableText
               value={product.description as PortableTextBlock[]}
               components={{
