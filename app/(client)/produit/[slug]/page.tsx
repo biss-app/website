@@ -37,13 +37,13 @@ type PageProps = {
   params: {
     slug: string;
   };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  /* searchParams?: { [key: string]: string | string[] | undefined }; */
 };
 
 // Update the component signature to match Next.js conventions
 export default async function SingleProductPage({
   params,
-  searchParams: _searchParams = {},
+  /* searchParams = {}, */
 }: PageProps) {
   const { slug } = await params;
   const product = await getProductsBySlug(slug)!;
