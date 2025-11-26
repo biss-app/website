@@ -43,9 +43,9 @@ type PageProps = {
 // Update the component signature to match Next.js conventions
 export default async function SingleProductPage({
   params,
-  searchParams = {},
+  searchParams: _searchParams = {},
 }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
@@ -74,11 +74,22 @@ export default async function SingleProductPage({
         <div className="w-full md:w-1/2 flex flex-col shrink-0">
           <div className="relative w-full aspect-square overflow-hidden rounded-md border border-gold/20 shadow-md group">
             <Image
-              src={urlFor(product!.image!).url()}
+              src={urlFor(product!.image!)
+                .width(1200)
+                .height(1200)
+                .fit("crop")
+                .crop("entropy")
+                .dpr(2)
+                .quality(80)
+                .auto("format")
+                .bg("ffffff")
+                .url()}
               alt={product!.name!}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-110 rounded-md hoverEffect transition-transform duration-300"
             />
+
           </div>
           <div className="flex items-center justify-center mt-1">
             <p className="text-xs text-gray-500 italic text-center px-2">
@@ -143,7 +154,6 @@ export default async function SingleProductPage({
               }}
             />
           </section>
-
           <AddToCartButton product={product!} />
           <ProductInformations product={product!} />
         </div>
