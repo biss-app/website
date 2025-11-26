@@ -33,15 +33,9 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-// On définit explicitement les props attendues
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function Page({ params }: PageProps) {
-  const { slug } = params; // Pas d'await ici
+// On supprime le type PageProps explicite pour éviter le conflit
+export default async function Page({ params }: any) { 
+  const slug = params.slug; // Next.js fournit params correctement
   const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
