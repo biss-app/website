@@ -33,19 +33,18 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function SingleProductPage({ params }: PageProps) {
+export default async function SingleProductPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
-  const lastLine = descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
+  const lastLine =
+    descriptionLines.length ? descriptionLines[descriptionLines.length - 1] : "";
 
   const finalPrice =
     product?.price != null
