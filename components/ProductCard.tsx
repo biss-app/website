@@ -17,8 +17,8 @@ const ProductCard = ({product}: Props) => {
         {product?.image && (
           <Link href={`/produit/${product?.slug?.current}`}>
             <Image
-              src={urlFor(product.image).url()}
-              alt="productImage"
+              src={urlFor(product!.image!).width(1024).height(1024).fit('max').format('webp').url()}
+              alt={product!.name!}
               width={500}
               height={500}
               loading="lazy"
@@ -40,11 +40,6 @@ const ProductCard = ({product}: Props) => {
             ))}
           </div>
         )}
-        {/*{isStock && (
-          <div className="absolute bottom-0 left-0 w-full translate-y-12 group-hover:-translate-y-4 hoverEffect">
-            <ProductCartBar  />
-          </div>
-          )}*/}
       </div>
       {/* Description */}
       <div className="p-5 flex flex-col gap-2">
@@ -54,20 +49,6 @@ const ProductCard = ({product}: Props) => {
               ? "Snack by Biss'App"
               : "Boisson by Biss'App"}
           </p>
-
-          {/*<div className="flex items-center text-gray-500 gap-1">
-            {Array.from({ length: 5 }).map((_, index) => {
-            const isLastStar = index === 4;
-            return (
-              <LuStar
-                fill={!isLastStar ? "#FCA99B":'transparent'}
-                key={index}
-                className={`${isLastStar ? "text-gray-500":
-                "text-lightOrange"}`}
-              />
-            );
-          })}
-          </div>*/}
         </div>
         <p className="text-base text-gray-600 tracking-wide font-semibold line-clamp-1">
           {product?.name}

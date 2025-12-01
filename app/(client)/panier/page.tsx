@@ -86,10 +86,14 @@ const CartPage = () => {
 
   // --- 🚚 Calculs ---
   const subTotal = getSubTotalPrice();
-  const discount = subTotal - getTotalPrice();
-  const totalAfterDiscount = subTotal - discount;
-  const shippingCost = deliveryMode === "click&collect" ? 0 : totalAfterDiscount >= 25 ? 0 : 2.5;
-  const finalTotal = getTotalPrice() + shippingCost;
+const total = getTotalPrice();             // total après réduction
+const discount = subTotal - total;
+
+const shippingCost =
+  deliveryMode === "click&collect" ? 0 : total >= 25 ? 0 : 2.5;
+
+const finalTotal = total + shippingCost;
+
 
   const shippingLabel =
     deliveryMode === "click&collect"
@@ -226,7 +230,7 @@ const CartPage = () => {
                             />
 
                             <Link
-                              href={`/produit/${product.slug.current}`}
+                              href={`/produit/${product.slug!.current}`}
                               className="border rounded-md overflow-hidden"
                               style={{
                                 width: 56,
@@ -235,7 +239,7 @@ const CartPage = () => {
                               }}
                             >
                               <Image
-                                src={urlFor(product.image).url()}
+                                src={urlFor(product.image!).url()}
                                 alt="productImage"
                                 fill
                                 className="object-cover"
@@ -269,7 +273,7 @@ const CartPage = () => {
                             <span className="md:hidden text-sm text-gray-500">
                               Sous-total :
                             </span>
-                            <PriceFormatter amount={product.price * itemCount} />
+                            <PriceFormatter amount={product.price! * itemCount} />
                           </div>
                         </div>
                       );

@@ -11,7 +11,6 @@ import DisableDraftMode from "@/components/DisableDraftMode";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import LiveLayout from "../(live)/layout"; // Wrapper client pour SanityLive
 import { draftMode } from "next/headers";
 
 const poppins = Poppins({
@@ -117,8 +116,7 @@ const isProductPage =
           <Header />
 
           <main className="grow">
-            {/* On wrappe le contenu dans le Client Component LiveLayout */}
-            {draft.isEnabled ? <LiveLayout>{children}</LiveLayout> : children}
+            {children}
           </main>
 
           <Footer />
