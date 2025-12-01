@@ -37,10 +37,9 @@ type PageProps = {
   params: {
     slug: string;
   };
-  searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export default async function SingleProductPage({ params, searchParams = {} }: PageProps) {
+export default async function SingleProductPage({ params }: PageProps) {
   const { slug } = params;
   const product = await getProductsBySlug(slug)!;
 
@@ -58,7 +57,7 @@ export default async function SingleProductPage({ params, searchParams = {} }: P
   return (
     <div>
       <ProductJsonLD
-        name={product?.name ?? "Produit Biss'App"}
+        name={product?.name ?? "Produit Biss&apos;App"}
         image={product?.image ? urlFor(product.image).url() : "/favicon.ico"}
         description={lastLine}
         price={finalPrice}

@@ -116,8 +116,8 @@ export default function ProductInformations({ product }: Props) {
 
           {openSection === "livraison" && (
             <p className="whitespace-pre-line">
-              Nos produits peuvent être livrés à l&apos;adresse de votre choix
-              ou récupérés en Click&Collect à l&apos;arrêt de tramway Stade M.
+              Nos produits peuvent être livrés à l&rsquo;adresse de votre choix
+              ou récupérés en Click&Collect à l&rsquo;arrêt de tramway Stade M.
               Michelin.
 
               {"\n\n"}
@@ -125,7 +125,7 @@ export default function ProductInformations({ product }: Props) {
               Après midi → minimum 48h.
 
               {"\n\n"}
-              Plus d&apos;infos dans nos{" "}
+              Plus d&rsquo;infos dans nos{" "}
               <a
                 href="/conditions-generales-de-vente"
                 className="text-gold underline"
@@ -151,9 +151,9 @@ export default function ProductInformations({ product }: Props) {
                 Il assure une protection optimale des boissons, en préservant leurs arômes, leur fraîcheur et leurs qualités naturelles tout au long de leur conservation.
                 <br/>
                 <br/>
-                Bien que le verre soit également recyclable et bénéficie d'un bon taux de collecte, son empreinte carbone reste nettement plus élevée que celle du PET.
+                Bien que le verre soit également recyclable et bénéficie d&rsquo;un bon taux de collecte, son empreinte carbone reste nettement plus élevée que celle du PET.
                 <br/>
-                Grâce à sa légèreté, sa résistance et son impact environnemental réduit, le PET représente une solution d'emballage à la fois fiable, sécurisée et durable.
+                Grâce à sa légèreté, sa résistance et son impact environnemental réduit, le PET représente une solution d&rsquo;emballage à la fois fiable, sécurisée et durable.
                 <br/>
                 <br/>
                 <span className="font-semibold">
