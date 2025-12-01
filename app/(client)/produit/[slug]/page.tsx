@@ -33,12 +33,14 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
     .join("\n");
 };
 
-export default async function SingleProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
+export default async function SingleProductPage(
+  {
+    params,
+  }: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const { slug } = await params;
   const product = await getProductsBySlug(slug)!;
 
   const descriptionString = portableTextToString(product?.description);
