@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React from "react";
 import { LuList } from "react-icons/lu";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -22,8 +22,7 @@ interface Props {
 }
 
 export default function ProductInformations({ product }: Props) {
-  const [openSection, setOpenSection] = useState<string | null>(null);
-  const { getTotalPrice } = userCartStore();
+  const [openSection, setOpenSection] = React.useState<string | null>(null);
   const totalPrice = userCartStore((state) => state.getTotalPrice());
 
   const toggleSection = (section: string) => {
@@ -106,7 +105,8 @@ export default function ProductInformations({ product }: Props) {
                 className="text-gold underline"
               >
                 contact@biss-app.fr
-              </a>.
+              </a>
+              .
             </p>
           )}
 
@@ -127,7 +127,8 @@ export default function ProductInformations({ product }: Props) {
                 className="text-gold underline"
               >
                 Conditions Générales de Vente
-              </a>.
+              </a>
+              .
             </p>
           )}
 
@@ -136,25 +137,30 @@ export default function ProductInformations({ product }: Props) {
               🌍{" "}
               <span className="font-semibold">
                 Nos bouteilles sont fabriquées en{" "}
-                  <a href="https://www.recycletheone.com/fr/quest-ce-que-le-pet/" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">
-                    polyethylene terephthalate (PET)
-                  </a>
+                <a
+                  href="https://www.recycletheone.com/fr/quest-ce-que-le-pet/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold underline hover:text-gold-700"
+                >
+                  polyethylene terephthalate (PET)
+                </a>
               </span>
-              <br/>
-              <br/>
-                Ce matériau figure parmi les plus performants pour les emballages alimentaires.
-                <br/>
-                Il assure une protection optimale des boissons, en préservant leurs arômes, leur fraîcheur et leurs qualités naturelles tout au long de leur conservation.
-                <br/>
-                <br/>
-                Bien que le verre soit également recyclable et bénéficie d&rsquo;un bon taux de collecte, son empreinte carbone reste nettement plus élevée que celle du PET.
-                <br/>
-                Grâce à sa légèreté, sa résistance et son impact environnemental réduit, le PET représente une solution d&rsquo;emballage à la fois fiable, sécurisée et durable.
-                <br/>
-                <br/>
-                <span className="font-semibold">
-                  Nous vous encourageons, pour notre si belle planète, à réutiliser les bouteilles PET qui vous seront remises lors de la livraison.
-                </span>
+              <br />
+              <br />
+              Ce matériau figure parmi les plus performants pour les emballages alimentaires.
+              <br />
+              Il assure une protection optimale des boissons, en préservant leurs arômes, leur fraîcheur et leurs qualités naturelles tout au long de leur conservation.
+              <br />
+              <br />
+              Bien que le verre soit également recyclable et bénéficie d&rsquo;un bon taux de collecte, son empreinte carbone reste nettement plus élevée que celle du PET.
+              <br />
+              Grâce à sa légèreté, sa résistance et son impact environnemental réduit, le PET représente une solution d&rsquo;emballage à la fois fiable, sécurisée et durable.
+              <br />
+              <br />
+              <span className="font-semibold">
+                Nous vous encourageons, pour notre si belle planète, à réutiliser les bouteilles PET qui vous seront remises lors de la livraison.
+              </span>
             </div>
           )}
         </div>
