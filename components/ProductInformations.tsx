@@ -24,11 +24,7 @@ interface Props {
 export default function ProductInformations({ product }: Props) {
   const [openSection, setOpenSection] = useState<string | null>(null);
   const { getTotalPrice } = userCartStore();
-  const [totalPrice, setTotalPrice] = useState<number | null>(null);
-
-  useEffect(() => {
-    setTotalPrice(getTotalPrice());
-  }, [getTotalPrice]);
+  const totalPrice = userCartStore((state) => state.getTotalPrice());
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
@@ -121,8 +117,8 @@ export default function ProductInformations({ product }: Props) {
               Michelin.
 
               {"\n\n"}
-              Pour toute commande passée avant midi, livraison le lendemain.
-              Après midi → minimum 48h.
+              Pour toute commande passée avant 17h00 entre le lundi et le vendredi, livraison possible dès 19h00.
+              Après 17h00, livraison possible dès le lendemain à partir de 12h00.
 
               {"\n\n"}
               Plus d&rsquo;infos dans nos{" "}
@@ -137,9 +133,9 @@ export default function ProductInformations({ product }: Props) {
 
           {openSection === "détails" && (
             <div className="text-sm text-gray-600 whitespace-pre-line">
-              🌍
+              🌍{" "}
               <span className="font-semibold">
-                Nos bouteilles sont fabriquées en 
+                Nos bouteilles sont fabriquées en{" "}
                   <a href="https://www.recycletheone.com/fr/quest-ce-que-le-pet/" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">
                     polyethylene terephthalate (PET)
                   </a>
