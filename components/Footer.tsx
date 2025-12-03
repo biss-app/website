@@ -99,7 +99,7 @@ const Footer = () => {
               <Image src={TikTok} alt="TikTok" width={32} height={32} />
             </a>
             <a
-              href="https://www.facebook.com/people/BissApp"
+              href="https://www.facebook.com/people/BissApp/61583983762750/#"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-8 h-8"

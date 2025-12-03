@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
@@ -44,9 +44,57 @@ export default function SEOSchema() {
       url: "https://biss-app.fr",
       logo: "https://biss-app.fr/og-image.png",
       sameAs: [
-        "https://www.instagram.com/toncompte",
-        "https://www.facebook.com/toncompte"
+        "https://www.instagram.com/bissapp.fr",
+        "https://www.tiktok.com/@bissapp.fr",
+        "https://www.facebook.com/people/BissApp/61583983762750/#",
+        "https://www.linkedin.com/company/bissappfr/",
+        "https://www.tripadvisor.fr/Restaurant_Review-g187091-d33988079-Reviews-Biss_App-Clermont_Ferrand_Puy_de_Dome_Auvergne_Rhone_Alpes.html"
       ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "OfferShippingDetails",
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "name": "Clermont-Ferrand et alentours"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "value": 2.5,
+          "unitCode": "HUR"
+        }
+      },
+      "handlingTime": {
+        "@type": "QuantitativeValue",
+        "value": 0.75,
+        "unitCode": "HUR"
+      },
+      "shippingRate": [
+        {
+          "@type": "MonetaryAmount",
+          "value": 2.5,
+          "currency": "EUR",
+          "eligibleTransactionVolume": {
+            "@type": "PriceSpecification",
+            "minPrice": 0,
+            "maxPrice": 24.99
+          },
+          "shippingLabel": "Livraison à domicile"
+        },
+        {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "EUR",
+          "eligibleTransactionVolume": {
+            "@type": "PriceSpecification",
+            "minPrice": 25
+          },
+          "shippingLabel": "Livraison gratuite à domicile"
+        }
+      ],
+      "additionalType": "Click&Collect gratuit à l'arrêt de tramway Stade M. Michelin"
     }
   ];
 
