@@ -14,19 +14,13 @@ import { Badge } from "./ui/badge";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { Button } from "./ui/button";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import { CircleCheckIcon } from "./ui/circle-check";
 
 interface DiscountBannerProps {
   sales: SALE_QUERYResult;
   onScrollClick: () => void;
 }
-
-const portableTextComponents: PortableTextComponents = {
-  block: {
-    normal: ({ children }) => <div className="mb-2">{children}</div>,
-  },
-};
 
 const DiscountBanner: React.FC<DiscountBannerProps> = ({
   sales,
@@ -136,7 +130,7 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
                     <div className="w-full md:w-1/2 flex justify-center py-1 px-4 md:px-0">
                       <Image
                         src={urlFor(sale.image).url()}
-                        alt={sale.title || "bannerImage"}
+                        alt={sale.title || "Image d'annonce"}
                         width={500}
                         height={500}
                         className="
