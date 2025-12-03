@@ -61,10 +61,10 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
                       />
                     </div>
 
-                    <p className="text-sm mb-3">
+                    {/* <p className="text-sm mb-3">
                       Ajoutez vos coups de cœur au panier, et la réduction sera
                       automatiquement appliquée !
-                    </p>
+                    </p>*/}
 
                     <Button
                       onClick={onScrollClick}
