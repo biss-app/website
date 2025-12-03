@@ -1,3 +1,5 @@
+"use client"
+
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 
@@ -16,6 +18,7 @@ export default function SEOSchema() {
       url: "https://biss-app.fr",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "14 bis rue Vaucanson",
         addressLocality: "Clermont-Ferrand",
         postalCode: ["63000", "63100"],
         addressCountry: "FR",
