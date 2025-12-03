@@ -15,6 +15,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { Button } from "./ui/button";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { CircleCheckIcon } from "./ui/circle-check";
 
 interface DiscountBannerProps {
   sales: SALE_QUERYResult;
@@ -56,8 +57,64 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
 
                     <div className="text-muted-foreground text-sm mb-2">
                       <PortableText
-                        value={sale.description || []}
-                        components={portableTextComponents}
+                        value={sale?.description ?? []}
+                        components={{
+                          block: {
+                            normal: ({ children }) => <p className="mb-3">{children}</p>,
+                            h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+                            h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
+                            h3: ({ children }) => <h3 className="text-xl font-medium mb-2">{children}</h3>,
+                            h4: ({ children }) => <h4 className="text-lg font-medium mb-2">{children}</h4>,
+                            h5: ({ children }) => <h5 className="text-base font-medium mb-1">{children}</h5>,
+                            h6: ({ children }) => <h6 className="text-sm font-medium mb-1">{children}</h6>,
+                            blockquote: ({ children }) => (
+                              <blockquote className="pl-4 border-l-4 italic mb-4">
+                                {children}
+                              </blockquote>
+                            ),
+                          },
+
+                          marks: {
+                            strong: ({ children }) => <strong>{children}</strong>,
+                            em: ({ children }) => <em>{children}</em>,
+                            code: ({ children }) => (
+                              <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>
+                            ),
+                            underline: ({ children }) => <u>{children}</u>,
+                            strike: ({ children }) => <s>{children}</s>,
+                            link: ({ children, value }) => (
+                              <a
+                                href={value?.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline"
+                              >
+                                {children}
+                              </a>
+                            ),
+                          },
+
+                          list: {
+                            bullet: ({ children }) => (
+                              <ul className="mb-4 pl-6 list-disc">{children}</ul>
+                            ),
+                            number: ({ children }) => (
+                              <ol className="mb-4 pl-6 list-decimal">{children}</ol>
+                            ),
+                          },
+
+                          listItem: {
+                            bullet: ({ children }) => (
+                              <li className="flex mb-1">
+                                <CircleCheckIcon className="w-5 h-5 text-green-500 shrink-0 mr-2.5 inline-block align-middle -mt-1" />
+                                <span>{children}</span>
+                              </li>
+                            ),
+                            number: ({ children }) => (
+                              <li className="mb-1">{children}</li>
+                            ),
+                          },
+                        }}
                       />
                     </div>
 
