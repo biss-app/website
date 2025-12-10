@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Loader from "@/loader";
+import Loader from "@/app/(client)/loading";
 import { useAuth, useUser } from "@clerk/nextjs";
 import SignInPrompt from "@/components/SignInPrompt";
 import { ShoppingBag, Trash2, ChevronDown } from "lucide-react";
@@ -108,14 +108,12 @@ const finalTotal = total + shippingCost;
         <Container>
           {groupedItems?.length ? (
             <>
-              {/* En-tête */}
               <div className="flex items-center gap-2 py-5">
                 <ShoppingBag className="h-6 w-6 text-primary" />
                 <h1 className="text-2xl font-semibold">Votre panier</h1>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-32">
-                {/* Résumé Desktop */}
                 <div className="lg:col-span-1">
                   <div className="hidden md:block w-full bg-white p-6 rounded-lg border">
                     <h2 className="text-xl font-semibold mb-4">Résumé de la commande</h2>
@@ -130,8 +128,6 @@ const finalTotal = total + shippingCost;
                         <span>Réduction</span>
                         <PriceFormatter amount={discount} />
                       </div>
-
-                      {/* Livraison */}
                       <div className="flex items-center justify-between relative">
                         <div
                           className="flex items-center gap-1.5 cursor-pointer select-none px-2.5 py-1 border rounded-md"
@@ -199,10 +195,7 @@ const finalTotal = total + shippingCost;
                     </div>
                   </div>
                 </div>
-
-                {/* Produits */}
                 <div className="lg:col-span-2 rounded-lg overflow-hidden border">
-                  {/* Header Desktop */}
                   <div className="hidden md:grid grid-cols-6 bg-white border-b p-3 font-semibold">
                     <h2 className="col-span-3">Produit</h2>
                     <h2>Prix</h2>
@@ -222,7 +215,6 @@ const finalTotal = total + shippingCost;
                             md:grid md:grid-cols-6 md:items-center
                           "
                         >
-                          {/* Produit */}
                           <div className="flex items-center gap-3 md:col-span-3">
                             <Trash2
                               onClick={() => handleDeleteProduct(product._id)}
@@ -253,22 +245,16 @@ const finalTotal = total + shippingCost;
                               <p className="text-sm text-gray-500">{product.label}</p>
                             </div>
                           </div>
-
-                          {/* Prix */}
                           <div className="flex justify-between md:block">
                             <span className="md:hidden text-sm text-gray-500">Prix :</span>
                             <PriceFormatter amount={product.price} />
                           </div>
-
-                          {/* Quantité */}
                           <div className="flex justify-between md:block">
                             <span className="md:hidden text-sm text-gray-500">
                               Quantité :
                             </span>
                             <QuantityButtons product={product} />
                           </div>
-
-                          {/* Sous-total */}
                           <div className="flex justify-between md:block font-medium">
                             <span className="md:hidden text-sm text-gray-500">
                               Sous-total :
@@ -289,8 +275,6 @@ const finalTotal = total + shippingCost;
                   </div>
                 </div>
               </div>
-
-              {/* Résumé Mobile */}
               <div className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t shadow-lg p-4 z-50">
                 <div className="flex justify-between items-center">
                   <div>
@@ -305,8 +289,6 @@ const finalTotal = total + shippingCost;
                   </Button>
                 </div>
               </div>
-
-              {/* Checkout Dialog */}
               <CheckoutDialog
                 isOpen={isCheckoutOpen}
                 loading={loading}
@@ -314,8 +296,6 @@ const finalTotal = total + shippingCost;
                 onConfirm={(data) => handleCheckout({ ...data, mode: deliveryMode })}
                 mode={deliveryMode}
               />
-
-              {/* Info Dialog */}
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="sm:max-w-lg text-center">
                   <DialogHeader>

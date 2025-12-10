@@ -9,6 +9,41 @@ export default function SEOSchema() {
 
   if (isProductPage) return null;
 
+  // Liste des mots-clés principaux
+  const baseKeywords = [
+    "Boissons africaines",
+    "Snacks africains",
+    "Bissap",
+    "Jus de gingembre",
+    "Original",
+    "Vitaminé",
+    "Booster",
+    "Ginger Boost",
+    "Chips de banane plantain",
+    "Mikatés",
+    "Artisanat africain",
+    "Cuisine africaine artisanale",
+    "Cuisine artisanale africaine",
+  ];
+
+  // Extensions géographiques
+  const locations = [
+    "",
+    "Clermont-Ferrand",
+    "Clermont-Ferrand et alentours",
+    "Clermont",
+    "Clfd",
+    "Clf",
+  ];
+
+  // Générer toutes les combinaisons keyword + location
+  const keywords: string[] = [];
+  baseKeywords.forEach((kw) => {
+    locations.forEach((loc) => {
+      keywords.push(loc ? `${kw} ${loc}` : kw);
+    });
+  });
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -20,11 +55,12 @@ export default function SEOSchema() {
         "@type": "PostalAddress",
         streetAddress: "14 bis rue Vaucanson",
         addressLocality: "Clermont-Ferrand",
-        postalCode: ["63000", "63100"],
+        postalCode: "63000",
         addressCountry: "FR",
       },
       servesCuisine: "Cuisine africaine artisanale",
       priceRange: "€",
+      keywords: keywords.join(", ")
     },
     {
       "@context": "https://schema.org",
@@ -46,55 +82,54 @@ export default function SEOSchema() {
       sameAs: [
         "https://www.instagram.com/bissapp.fr",
         "https://www.tiktok.com/@bissapp.fr",
-        "https://www.facebook.com/people/BissApp/61583983762750/#",
-        "https://www.linkedin.com/company/bissappfr/",
-        "https://www.tripadvisor.fr/Restaurant_Review-g187091-d33988079-Reviews-Biss_App-Clermont_Ferrand_Puy_de_Dome_Auvergne_Rhone_Alpes.html"
+        "https://www.facebook.com/people/BissApp/61583983762750",
+        "https://www.linkedin.com/company/bissappfr/"
       ]
     },
     {
       "@context": "https://schema.org",
       "@type": "OfferShippingDetails",
-      "shippingDestination": {
+      shippingDestination: {
         "@type": "DefinedRegion",
-        "name": "Clermont-Ferrand et alentours"
+        name: "Clermont-Ferrand et alentours"
       },
-      "deliveryTime": {
+      deliveryTime: {
         "@type": "ShippingDeliveryTime",
-        "transitTime": {
+        transitTime: {
           "@type": "QuantitativeValue",
-          "value": 2.5,
-          "unitCode": "HUR"
+          value: 2.5,
+          unitText: "H"
         }
       },
-      "handlingTime": {
+      handlingTime: {
         "@type": "QuantitativeValue",
-        "value": 0.75,
-        "unitCode": "HUR"
+        value: 0.75,
+        unitText: "H"
       },
-      "shippingRate": [
+      shippingRate: [
         {
           "@type": "MonetaryAmount",
-          "value": 2.5,
-          "currency": "EUR",
-          "eligibleTransactionVolume": {
+          value: 2.5,
+          currency: "EUR",
+          eligibleTransactionVolume: {
             "@type": "PriceSpecification",
-            "minPrice": 0,
-            "maxPrice": 24.99
+            minPrice: 0,
+            maxPrice: 24.99
           },
-          "shippingLabel": "Livraison à domicile"
+          shippingLabel: "Livraison à domicile"
         },
         {
           "@type": "MonetaryAmount",
-          "value": 0,
-          "currency": "EUR",
-          "eligibleTransactionVolume": {
+          value: 0,
+          currency: "EUR",
+          eligibleTransactionVolume: {
             "@type": "PriceSpecification",
-            "minPrice": 25
+            minPrice: 25
           },
-          "shippingLabel": "Livraison gratuite à domicile"
+          shippingLabel: "Livraison gratuite à domicile"
         }
       ],
-      "additionalType": "Click&Collect gratuit à l'arrêt de tramway Stade M. Michelin"
+      description: "Click & Collect gratuit à l'arrêt de tramway Stade M. Michelin"
     }
   ];
 

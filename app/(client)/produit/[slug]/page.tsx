@@ -69,7 +69,6 @@ export default async function SingleProductPage(
       />
 
       <Container className="flex flex-col md:flex-row gap-6 lg:gap-10 py-8 md:py-10 px-4 sm:px-6">
-        {/* Image */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           <div className="relative w-full max-w-md md:max-w-none aspect-square overflow-hidden rounded-md border border-gold/20 shadow-md group">
             {product?.image && (
@@ -90,8 +89,6 @@ export default async function SingleProductPage(
             </p>
           </div>
         </div>
-
-        {/* Informations */}
         <div className="w-full md:w-1/2 flex flex-col gap-4 md:gap-5">
           <h1 className="text-3xl sm:text-4xl font-bold">{product?.name}</h1>
 

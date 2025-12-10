@@ -8,7 +8,7 @@ import CartIcon from './CartIcon';
 import { currentUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignedIn, UserButton } from "@clerk/nextjs";
 import { SignInButton } from "@clerk/nextjs";
-import { User } from 'lucide-react';
+import { ShoppingBasket, User } from 'lucide-react';
 import { getMyOrders } from '@/sanity/helpers';
 const Header = async() => {
   const user = await currentUser();
@@ -16,7 +16,7 @@ const Header = async() => {
   if(user?.id) {
     orders = await getMyOrders(user?.id);
   }
-  console.log("orders", orders?.length);
+  console.log(orders?.length, "commandes");
   return (
     <header className="w-full bg-white py-4 sticky top-0 z-50">
       <Container className="flex md:items-center justify-between gap-5 flex-col md:flex-row">
@@ -35,8 +35,8 @@ const Header = async() => {
         <div className="flex items-center gap-5">
           <CartIcon />
         <ClerkLoaded>
-          <SignedIn>
-            {/* <Link
+          {/*<SignedIn>
+            <Link
               href={"/commandes"}
               className="flex items-center text-sm gap-2 border
               border-gray-200 px-2 py-1 rounded-md shadow-md
@@ -52,8 +52,8 @@ const Header = async() => {
                 </p>
                 <p className="font-semibold">Historique</p>
               </div>
-            </Link>*/}
-          </SignedIn>
+            </Link>
+          </SignedIn>*/}
           {user ? (
             <div className="flex items-center text-sm gap-2 border
             border-gray-200 px-2 py-1 rounded-md shadow-md

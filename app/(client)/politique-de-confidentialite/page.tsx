@@ -4,25 +4,18 @@ const PrivacyPolicyPage = () => {
   return (
     <main className="max-w-4xl mx-auto p-6">
       <article>
-        {/* TITRE PRINCIPAL */}
         <h1 className="text-gold text-4xl font-extrabold mb-8 uppercase">
           Politique de confidentialité
         </h1>
-
-        {/* INTRODUCTION */}
         <p className="text-gray-700 mb-8">
           Parce que votre confiance nous est précieuse, <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a> s&rsquo;engage à protéger vos données personnelles et à garantir leur confidentialité, dans le respect du Règlement Général sur la Protection des Données &#40;<a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">RGPD - UE 2016/679</a>&#41; et de la <a href="https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes" target="_blank" rel="noopener noreferrer" className="text-gold underline hover:text-gold-700">loi Informatique et Libertés modifiée</a>.
         </p>
-
-        {/* 1. PRÉAMBULE */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">1. PRÉAMBULE</h2>
           <p>
             La présente politique de confidentialité vise à informer les utilisateurs du site{" "} <a href="https://biss-app.fr" target="_blank" rel="noopener noreferrer">biss-app.fr</a> sur les modalités de collecte, d&rsquo;utilisation et de protection de leurs données personnelles par <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/biss-app-945074524" target="_blank" rel="noopener noreferrer">Biss&rsquo;App</a>.
           </p>
         </section>
-
-        {/* 2. RESPONSABLE DU TRAITEMENT */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
             2. RESPONSABLE DU TRAITEMENT
@@ -34,8 +27,6 @@ const PrivacyPolicyPage = () => {
             Vous pouvez contacter le responsable de la protection des données à l&rsquo;adresse suivante :{" "} <a href="mailto:dpo@biss-app.fr" className="text-gold underline hover:text-gold-700">dpo@biss-app.fr</a>.
           </p>
         </section>
-
-        {/* 3. DONNÉES COLLECTÉES */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">3. DONNÉES COLLECTÉES</h2>
           <p>Les données personnelles collectées par notre site sont les suivantes :</p>
@@ -50,8 +41,6 @@ const PrivacyPolicyPage = () => {
             Nous ne collectons aucun cookie de suivi ou données de navigation à des fins publicitaires.
           </p>
         </section>
-
-        {/* 4. FINALITÉ DU TRAITEMENT */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">4. FINALITÉ DU TRAITEMENT</h2>
           <p>Vos données sont traitées pour les finalités suivantes :</p>
@@ -65,8 +54,6 @@ const PrivacyPolicyPage = () => {
             Vous pouvez à tout moment vous opposer à la réception d&rsquo;e-mails promotionnels en nous contactant à l&rsquo;adresse suivante : <a href="mailto:dpo@biss-app.fr" className="text-gold underline hover:text-gold-700">dpo@biss-app.fr</a>.
           </p>
         </section>
-
-        {/* 5. PARTAGE DES DONNÉES */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
             5. PARTAGE DES DONNÉES AVEC DES TIERS
@@ -90,8 +77,6 @@ const PrivacyPolicyPage = () => {
             traiter conformément à leurs propres politiques de protection des données.
           </p>
         </section>
-
-        {/* 6. DURÉE DE CONSERVATION */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">6. DURÉE DE CONSERVATION</h2>
           <p>
@@ -101,8 +86,6 @@ const PrivacyPolicyPage = () => {
             Passé ce délai, elles sont supprimées ou anonymisées, sauf obligation légale de conservation.
           </p>
         </section>
-
-        {/* 7. SÉCURITÉ DES DONNÉES */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">7. SÉCURITÉ DES DONNÉES</h2>
           <p>
@@ -112,8 +95,6 @@ const PrivacyPolicyPage = () => {
             Les échanges d&rsquo;informations avec nos prestataires &#40;Stripe, Sanity, Clerk&#41; s&rsquo;effectuent via des connexions sécurisées &#40;HTTPS&#41;. Les informations de paiement ne sont jamais stockées sur nos serveurs.
           </p>
         </section>
-
-        {/* 8. VOS DROITS */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">8. VOS DROITS</h2>
           <p>Conformément à la législation en vigueur, vous disposez des droits suivants :</p>
@@ -129,8 +110,6 @@ const PrivacyPolicyPage = () => {
             Vous pouvez exercer ces droits en nous contactant à :{" "} <a href="mailto:dpo@biss-app.fr" className="text-gold underline hover:text-gold-700">dpo@biss-app.fr</a>.
           </p>
         </section>
-
-        {/* 9. MODIFICATIONS */}
         <section className="mb-6">
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">
             9. MODIFICATIONS DE LA POLITIQUE
@@ -143,8 +122,6 @@ const PrivacyPolicyPage = () => {
             date de dernière mise à jour en bas de page.
           </p>
         </section>
-
-        {/* 10. CONTACT */}
         <section>
           <h2 className="text-gold text-2xl font-bold mb-4 uppercase">10. CONTACT</h2>
           <p>
