@@ -6,9 +6,9 @@ import Form from 'next/form';
 import Link from 'next/link';
 import CartIcon from './CartIcon';
 import { currentUser } from "@clerk/nextjs/server";
-import { ClerkLoaded, SignedIn, UserButton } from "@clerk/nextjs";
+import { ClerkLoaded, UserButton } from "@clerk/nextjs";
 import { SignInButton } from "@clerk/nextjs";
-import { ShoppingBasket, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import { getMyOrders } from '@/sanity/helpers';
 const Header = async() => {
   const user = await currentUser();

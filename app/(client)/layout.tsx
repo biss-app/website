@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 import { ClerkProvider } from "@clerk/nextjs";
 import { frFR } from "@clerk/localizations";
+
 import { Toaster } from "react-hot-toast";
 import DisableDraftMode from "@/components/DisableDraftMode";
+
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+
 import { draftMode } from "next/headers";
 import SEOSchema from "@/components/SEOSchema";
 
 const poppins = Poppins({
   variable: "--font-poppins",
-  weight: "400",
-  preload: false,
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  preload: true,
   display: "swap",
 });
 
@@ -27,7 +33,6 @@ export const metadata: Metadata = {
   },
   description:
     "Voyagez en Afrique en seulement quelques clics ! Biss'App propose des boissons et snacks africains artisanaux à Clermont-Ferrand et ses alentours.",
-  // … (tout le reste est OK)
 };
 
 export default async function RootLayout({
@@ -39,7 +44,7 @@ export default async function RootLayout({
 
   return (
     <ClerkProvider dynamic localization={frFR}>
-      <html lang="fr">
+      <html lang="fr" suppressHydrationWarning>
         <body
           className={`${poppins.variable} antialiased min-h-screen flex flex-col`}
         >
@@ -47,9 +52,7 @@ export default async function RootLayout({
 
           <Header />
 
-          <main className="grow">
-            {children}
-          </main>
+          <main className="grow">{children}</main>
 
           <Footer />
 
@@ -62,7 +65,7 @@ export default async function RootLayout({
               },
             }}
           />
-          
+
           <SEOSchema />
 
           <SpeedInsights />
