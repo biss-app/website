@@ -4,5 +4,7 @@ Disallow: /panier
 Disallow: /mentions-legales
 Disallow: /politique-de-confidentialite
 Disallow: /conditions-generales-de-vente
+Disallow: /categorie/boissons
+Disallow: /categorie/snacks
 
 Sitemap: https://biss-app.fr/sitemap.xml
