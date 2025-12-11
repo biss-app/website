@@ -34,8 +34,6 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
             <Card>
               <CardContent className="p-0">
                 <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 py-2">
-
-                  {/* TEXT SECTION */}
                   <div className="flex-1 px-3 py-2 md:px-8">
                     <Badge
                       variant="secondary"
@@ -45,9 +43,9 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
                         `${sale.badge} ${sale.discountAmount}% OFFERTS`}
                     </Badge>
 
-                    <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-1">
+                    <h1 className="text-xl md:text-2xl font-bold tracking-tight mb-1">
                       {sale?.title}
-                    </h2>
+                    </h1>
 
                     <div className="text-muted-foreground text-sm mb-2">
                       <PortableText
@@ -124,8 +122,6 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
                       TROUVER MON COUP DE CŒUR
                     </Button>
                   </div>
-
-                  {/* IMAGE SECTION */}
                   {sale?.image && (
                     <div className="w-full md:w-1/2 flex justify-center py-1 px-4 md:px-0">
                       <Image
@@ -141,6 +137,7 @@ const DiscountBanner: React.FC<DiscountBannerProps> = ({
                           transition-transform 
                           duration-300 
                           hover:scale-105
+                          rounded-lg
                         "
                       />
                     </div>
