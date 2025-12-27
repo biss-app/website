@@ -9,6 +9,7 @@ import ProductInformations from '@/components/ProductInformations';
 import { PortableText } from '@portabletext/react';
 import { CircleCheckIcon } from '@/components/ui/circle-check';
 import ProductJsonLD from '@/components/ProductJsonLD';
+import { notFound, redirect } from 'next/navigation';
 
 interface PortableTextChild {
   _type: string;
@@ -34,14 +35,14 @@ const portableTextToString = (blocks: PortableTextBlock[] | undefined): string =
 };
 
 export default async function SingleProductPage(
-  {
-    params,
-  }: {
-    params: Promise<{ slug: string }>;
-  }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const product = await getProductsBySlug(slug)!;
+  const product = await getProductsBySlug(slug);
+
+  if (!product) {
+    redirect('/404');
+  }
 
   const descriptionString = portableTextToString(product?.description);
   const descriptionLines = descriptionString.split(/\r?\n/).filter(Boolean);
@@ -121,18 +122,13 @@ export default async function SingleProductPage(
                   h5: ({ children }) => <h5 className="text-base font-medium mb-1">{children}</h5>,
                   h6: ({ children }) => <h6 className="text-sm font-medium mb-1">{children}</h6>,
                   blockquote: ({ children }) => (
-                    <blockquote className="pl-4 border-l-4 italic mb-4">
-                      {children}
-                    </blockquote>
+                    <blockquote className="pl-4 border-l-4 italic mb-4">{children}</blockquote>
                   ),
                 },
-
                 marks: {
                   strong: ({ children }) => <strong>{children}</strong>,
                   em: ({ children }) => <em>{children}</em>,
-                  code: ({ children }) => (
-                    <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>
-                  ),
+                  code: ({ children }) => <code className="bg-gray-100 px-1 py-0.5 rounded">{children}</code>,
                   underline: ({ children }) => <u>{children}</u>,
                   strike: ({ children }) => <s>{children}</s>,
                   link: ({ children, value }) => (
@@ -146,16 +142,10 @@ export default async function SingleProductPage(
                     </a>
                   ),
                 },
-
                 list: {
-                  bullet: ({ children }) => (
-                    <ul className="mb-4 pl-6 list-disc">{children}</ul>
-                  ),
-                  number: ({ children }) => (
-                    <ol className="mb-4 pl-6 list-decimal">{children}</ol>
-                  ),
+                  bullet: ({ children }) => <ul className="mb-4 pl-6 list-disc">{children}</ul>,
+                  number: ({ children }) => <ol className="mb-4 pl-6 list-decimal">{children}</ol>,
                 },
-
                 listItem: {
                   bullet: ({ children }) => (
                     <li className="flex mb-1">
@@ -163,16 +153,14 @@ export default async function SingleProductPage(
                       <span>{children}</span>
                     </li>
                   ),
-                  number: ({ children }) => (
-                    <li className="mb-1">{children}</li>
-                  ),
+                  number: ({ children }) => <li className="mb-1">{children}</li>,
                 },
               }}
             />
           </section>
 
-          <AddToCartButton product={product!} />
-          <ProductInformations product={product!} />
+          <AddToCartButton product={product} />
+          <ProductInformations product={product} />
         </div>
       </Container>
     </div>

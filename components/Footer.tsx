@@ -56,6 +56,7 @@ const Footer = () => {
         </p>
 
         <div className="flex flex-wrap gap-3 text-gray-400 justify-center md:justify-end">
+          <FooterLink href={"/notre-histoire"}>Notre histoire</FooterLink>
           <FooterLink href={"/mentions-legales"}>Mentions légales</FooterLink>
           <FooterLink href={"/politique-de-confidentialite"}>
             Politique de confidentialité
